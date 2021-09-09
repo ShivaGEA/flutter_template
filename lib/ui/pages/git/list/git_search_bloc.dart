@@ -17,18 +17,15 @@ class GitSearchBloc extends Bloc<GitSearchEvent, GitSearchState> {
       var list = (state as GitLoadedState).list;
       yield GitLoadMoreState(list: list);
       final resp = await _gitRepository.repositories();
-      await Future.delayed(Duration(seconds: 1));
       yield resp.fold((l) => GitLoadedState(list: [...list ?? [], ...l]),
           (r) => GitErrorState());
     } else if (event is GitLoadedEvent) {
       yield GitLoadingState();
       final resp = await _gitRepository.repositories();
-      await Future.delayed(Duration(seconds: 1));
       yield resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState());
     } else if (event is GitReloadEvent) {
       yield GitLoadingState();
       final resp = await _gitRepository.repositories();
-      await Future.delayed(Duration(seconds: 1));
       yield resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState());
     }
   }

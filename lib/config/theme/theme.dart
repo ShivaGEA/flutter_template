@@ -21,7 +21,7 @@ abstract class MyTheme {
   static bool _isInitialised = false;
 
   static Future<MyTheme> get() async =>
-      _isInitialised ? _theme : (await set(await _getPreSavedTheme()));
+      _isInitialised ? _theme : (getTheme(await _getPreSavedTheme()));
 
   static Future<MyTheme> set(ThemeType themeType) async {
     await _save(themeType);

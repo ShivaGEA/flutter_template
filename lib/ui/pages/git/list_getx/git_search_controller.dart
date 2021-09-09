@@ -47,9 +47,7 @@ class GitSearchController extends GetxController {
     state.value = GitPageLoadingState();
     final resp = await _gitRepository.repositories();
     state.value = resp.fold(
-      (l) {
-        return GitPageLoadedState(list: l);
-      },
+      (l) => GitPageLoadedState(list: l),
       (r) => GitPageErrorState(),
     );
     print('end=> ${state.value}');
@@ -59,9 +57,7 @@ class GitSearchController extends GetxController {
     state.value = GitPageLoadingState();
     final resp = await _gitRepository.repositories();
     state.value = resp.fold(
-      (l) {
-        return GitPageLoadedState(list: l);
-      },
+      (l) => GitPageLoadedState(list: l),
       (r) => GitPageErrorState(),
     );
     print('end=> ${state.value}');

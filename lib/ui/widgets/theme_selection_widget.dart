@@ -24,6 +24,7 @@ class ThemeSelectionWidget extends StatelessWidget {
         margin: const EdgeInsets.only(right: 16.0),
         child: Container(
             child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

@@ -31,14 +31,14 @@ class _GitClientImpl implements GitClientImpl {
   }
 
   @override
-  Future<GitRepo> search1() async {
+  Future<GitRepo> search() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GitRepo>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/search1',
+                .compose(_dio.options, '/search',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GitRepo.fromJson(_result.data!);

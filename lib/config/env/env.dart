@@ -11,19 +11,22 @@ enum BuildType { DEV, QA, UAT, PROD }
 
 abstract class Environment {
   String get name;
+  BuildType get type => BuildType.DEV;
   String get baseUrl;
 
-  static String login = "/login";
-  static String signup = "/signup";
-  static String profile = "/profile";
-  static String updateProfile = "/updateProfile";
-  static String resetPassword = "/resetPassword";
+  static const login = "/login";
+  static const signup = "/signup";
+  static const profile = "/profile";
+  static const updateProfile = "/updateProfile";
+  static const resetPassword = "/resetPassword";
+  static const gitRepositories = "/repositories";
+  static const gitSearch = "/search";
 
   static late Environment _env;
   static bool _isInitialised = false;
 
   static Future<Environment> get() async =>
-      _isInitialised ? _env : (await set(await _getPreSavedEnv()));
+      _isInitialised ? _env : _getEnv(await _getPreSavedEnv());
 
   static Future<Environment> set(BuildType buildType) async {
     await _save(buildType);

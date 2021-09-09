@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:shqs_util/utilities/logger/logger.dart';
 import 'package:template/config/localization/lang/language.dart';
 import 'package:template/config/theme/theme.dart';
-import 'package:template/main.dart';
 
 import '../config/env/env.dart';
+import 'app.dart';
 import 'data/cache.dart';
 import 'data/datasources/network/client/git_client_impl.dart';
 import 'data/datasources/network/datasource/git_datasource_impl.dart';
@@ -14,11 +14,13 @@ import 'data/repositories/git_repository_impl.dart';
 import 'domain/datasources/database/database.dart';
 
 Future<void> setupLocator() async {
+  Get.put(MyAppController());
+
   await _loadCache();
   var env = await _setupEnvironment();
   var locale = await _setupLocale();
   var theme = await _setupTheme();
-  Get.put(MyAppController()).init(env, locale, theme);
+  Get.find<MyAppController>().init(env, locale, theme);
   await _setupResources();
 }
 

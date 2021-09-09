@@ -10,6 +10,7 @@ import 'package:template/ui/widgets/language_selection_dropdown.dart';
 import 'package:template/ui/widgets/loader.dart';
 import 'package:template/ui/widgets/theme_selection_widget.dart';
 
+import '../../../../app.dart';
 import 'git_search_bloc.dart';
 import 'git_search_event.dart';
 import 'git_search_state.dart';
