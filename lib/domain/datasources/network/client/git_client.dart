@@ -1,4 +1,4 @@
 abstract class GitClient {
   Future repositories();
-  Future search();
+  Future search1();
 }

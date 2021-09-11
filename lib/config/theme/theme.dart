@@ -21,7 +21,7 @@ abstract class MyTheme {
   static bool _isInitialised = false;
 
   static Future<MyTheme> get() async =>
-      _isInitialised ? _theme : (getTheme(await _getPreSavedTheme()));
+      _isInitialised ? _theme : (await set(await _getPreSavedTheme()));
 
   static Future<MyTheme> set(ThemeType themeType) async {
     await _save(themeType);
@@ -62,8 +62,7 @@ abstract class MyTheme {
     if (type == ThemeType.BLUE) return BlueTheme.instance;
     if (type == ThemeType.RED) return RedTheme.instance;
     if (type == ThemeType.YELLOW) return YellowTheme.instance;
-    if (type == ThemeType.GREEN)
-      return GreenTheme.instance;
+    if (type == ThemeType.GREEN) return GreenTheme.instance;
     else
       return LightTheme.instance; //Default Theme
   }

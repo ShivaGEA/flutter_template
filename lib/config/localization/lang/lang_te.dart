@@ -18,7 +18,4 @@ class Telugu extends Language {
 
   @override
   String get loading => 'లోడ్...';
-
-  @override
-  String get theme => "థీమ్";
 }

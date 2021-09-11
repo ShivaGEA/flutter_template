@@ -15,7 +15,6 @@ abstract class Language {
   String get loadMore => "Load More";
   String get search => "Search";
   String get loading => "Loading...";
-  String get theme => "Theme";
 }
 
 const Map<String, String> languages = {

@@ -33,5 +33,5 @@ class GreenTheme extends MyTheme {
   String name = "Green Theme";
 
   @override
-  ThemeType get type => ThemeType.GREEN;
+  ThemeType get type => ThemeType.LIGHT;
 }

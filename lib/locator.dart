@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:shqs_util/utilities/logger/logger.dart';
 import 'package:template/config/localization/lang/language.dart';
 import 'package:template/config/theme/theme.dart';
+import 'package:template/main.dart';
 
 import '../config/env/env.dart';
-import 'app.dart';
 import 'data/cache.dart';
 import 'data/datasources/network/client/git_client_impl.dart';
 import 'data/datasources/network/datasource/git_datasource_impl.dart';

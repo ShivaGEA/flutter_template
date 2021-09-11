@@ -18,7 +18,4 @@ class Hindi extends Language {
 
   @override
   String get loading => "लोड हो रहा है";
-
-  @override
-  String get theme => "थीम";
 }
