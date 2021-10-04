@@ -7,6 +7,8 @@ import 'package:template/config/theme/theme.dart';
 
 import '../config/env/env.dart';
 import 'app.dart';
+import 'config/env/env.dart';
+import 'config/theme/theme.dart';
 import 'data/cache.dart';
 import 'data/datasources/network/client/git_client_impl.dart';
 import 'data/datasources/network/datasource/git_datasource_impl.dart';

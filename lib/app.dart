@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:template/config/routes.dart';
 
 import 'config/env/dev.dart';
 import 'config/env/env.dart';
 import 'config/localization/app_localizations_delegate.dart';
 import 'config/localization/lang/language.dart';
+import 'config/routes.dart';
 import 'config/theme/light_theme.dart';
 import 'config/theme/theme.dart';
 import 'main.dart';
@@ -30,9 +30,7 @@ class MyApp extends GetWidget<MyAppController> {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => Obx(() => _appBody(controller));
-
-  Widget _appBody(MyAppController controller) => GetMaterialApp(
+  Widget build(BuildContext context) => Obx(() => GetMaterialApp(
         title: 'Template',
         theme: controller.theme.value.theme,
         locale: controller.locale.value,
@@ -52,9 +50,9 @@ class MyApp extends GetWidget<MyAppController> {
           }
           return supportedLocales.first;
         },
-        initialRoute: Routes.gitSearch,
+        initialRoute: Routes.gitSearchGetX,
         getPages: Routes.pages,
-      );
+      ));
 }
 
 class MyAppController extends GetxController {

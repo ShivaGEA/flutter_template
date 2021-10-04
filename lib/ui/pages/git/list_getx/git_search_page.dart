@@ -16,12 +16,12 @@ import 'git_search_event.dart';
 import 'git_search_state.dart';
 
 class GitPage extends GetView<GitSearchController> {
-  final controller = Get.put(GitSearchController());
+  final _controller = Get.put(GitSearchController());
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-        init: controller,
+        init: _controller,
         builder: (GitSearchController controller) => ui(controller));
   }
 

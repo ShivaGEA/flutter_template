@@ -29,6 +29,7 @@ const String prefSelectedLanguageCode = "SelectedLanguageCode";
 Future<Locale> saveLocale(String languageCode) async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   await _prefs.setString(prefSelectedLanguageCode, languageCode);
+
   return _locale(languageCode);
 }
 
@@ -43,5 +44,4 @@ Locale _locale(String languageCode) =>
 
 void changeLanguage(String languageCode) async {
   await saveLocale(languageCode);
-  saveLocale(languageCode);
 }
