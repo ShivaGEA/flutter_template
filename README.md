@@ -1,4 +1,4 @@
-# template
+# Template
 Flutter Basic Template Application
 
 
@@ -11,7 +11,6 @@ Configuration will be done based on below respective file(environment)
 - [Dev](lib/config/env/dev.dart)
 - [Prod](lib/config/env//prod.dart)
 - [QA](lib/config/env//qa.dart)
-- [UAT](lib/config/env//uat.dart)
 - [UAT](lib/config/env//uat.dart)
 
 
