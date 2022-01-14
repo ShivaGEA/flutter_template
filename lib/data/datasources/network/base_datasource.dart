@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:template/data/datasources/network/response/api_response.dart';
 import 'package:template/data/enum/network_request.dart';
@@ -33,14 +34,13 @@ class BaseDataSource extends NetworkHandler {
 
   Future<Either<T, Message>> getResult<T>(Future<T> apiCall) async {
     try {
-      print("===>Api  $apiCall");
+      debugPrint("===>Api  $apiCall");
       var resp = await apiCall;
-      print("===>Api end resp: ");
-      print(resp);
+      debugPrint("===>Api end resp: ");
+      debugPrint("$resp");
       return Left(resp);
     } catch (e) {
-      print("===>Api Exception: ${e.toString()}");
-      print(e);
+      debugPrint("===>Api Exception: ${e.toString()}");
       var exception = NetworkExceptions.getDioException(e);
       var msg = handleException(exception);
       return Right(msg);
@@ -94,10 +94,9 @@ class BaseDataSource extends NetworkHandler {
       case Message.SNACK_BAR:
         //Get.snackbar("alert", message);
         Get.snackbar('Fault Codes', 'This feature is not implemented');
-
         break;
       case Message.DIALOG:
-        //Get.dialog(snackbar)
+        //Get.dialog(widget)
         break;
     }
     return msg;

@@ -1,39 +1,75 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:template/config/routes.dart';
 
 import 'config/env/dev.dart';
 import 'config/env/env.dart';
 import 'config/localization/app_localizations_delegate.dart';
 import 'config/localization/lang/language.dart';
-import 'config/routes.dart';
 import 'config/theme/light_theme.dart';
 import 'config/theme/theme.dart';
-import 'main.dart';
 
-class MyApp extends GetWidget<MyAppController> {
-  final appController = Get.find<MyAppController>();
+Environment environment = DEV.instance;
+MyTheme selectedTheme = LightTheme.instance;
+Language lang = getLanguageFromLocale(
+    languages.keys.map((key) => Locale(key, '')).toList()[0]);
 
-  static void setLocale(Locale locale) {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+
+  static _MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>();
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale locale = _defaultLocale;
+  Language language = _defaultLanguage;
+  MyTheme theme = _defaultTheme;
+  Environment env = _defaultEnvironment;
+
+  static Locale get _defaultLocale =>
+      languages.keys.map((key) => Locale(key, '')).toList()[0];
+  static Language get _defaultLanguage => getLanguageFromLocale(_defaultLocale);
+  static MyTheme get _defaultTheme => LightTheme.instance;
+  static Environment get _defaultEnvironment => DEV.instance;
+
+  void setLocale(Locale _locale) {
+    setState(() {
+      locale = _locale;
+    });
     Get.find<MyAppController>().setLocale(locale);
   }
 
-  static void setTheme(MyTheme theme) {
-    Get.find<MyAppController>().setTheme(theme);
+  void setLocaleByLanguage(String language) {
+    setLocale(language2locale(language));
   }
 
-  static void setEnvironment(Environment environment) {
-    Get.find<MyAppController>().setEnvironment(environment);
+  void setTheme(MyTheme _theme) {
+    //Get.find<MyAppController>().setTheme(theme);
+    setState(() {
+      theme = _theme;
+    });
   }
 
-  // This widget is the root of your application.
+  void setEnvironment(Environment _environment) {
+    //Get.find<MyAppController>().setEnvironment(_environment);
+    setState(() {
+      env = _environment;
+    });
+  }
+
   @override
-  Widget build(BuildContext context) => Obx(() => GetMaterialApp(
+  Widget build(BuildContext context) => _appBody();
+
+  Widget _appBody() => GetMaterialApp(
         title: 'Template',
-        theme: controller.theme.value.theme,
-        locale: controller.locale.value,
+        theme: theme.theme,
+        locale: locale,
         supportedLocales: languages.keys.map((key) => Locale(key, '')).toList(),
         localizationsDelegates: [
           AppLocalizationsDelegate(),
@@ -50,23 +86,12 @@ class MyApp extends GetWidget<MyAppController> {
           }
           return supportedLocales.first;
         },
-        initialRoute: Routes.gitSearchGetX,
+        initialRoute: Routes.gitSearch,
         getPages: Routes.pages,
-      ));
+      );
 }
 
-class MyAppController extends GetxController {
-  var locale = _defaultLocale.obs;
-  var language = _defaultLanguage.obs;
-  var theme = _defaultTheme.obs;
-  var env = _defaultEnvironment.obs;
-
-  static Locale get _defaultLocale =>
-      languages.keys.map((key) => Locale(key, '')).toList()[0];
-  static Language get _defaultLanguage => getLanguageFromLocale(_defaultLocale);
-  static MyTheme get _defaultTheme => LightTheme.instance;
-  static Environment get _defaultEnvironment => DEV.instance;
-
+class MyAppController {
   Future<void> init(
       Environment environment, Locale locale, MyTheme theme) async {
     setLocale(locale);
@@ -75,28 +100,24 @@ class MyAppController extends GetxController {
   }
 
   Future<void> setLocale(Locale _locale) async {
-    this.locale.value = _locale;
-    this.language.value = getLanguageFromLocale(_locale);
-    lang = this.language.value;
+    var language = getLanguageFromLocale(_locale);
+    lang = language;
     changeLanguage(_locale.languageCode);
   }
 
   Future<void> setLocaleByLanguageCode(String languageCode) async {
     var _locale = await saveLocale(languageCode);
-    this.locale.value = _locale;
-    this.language.value = getLanguageFromLocale(_locale);
-    lang = this.language.value;
+    var language = getLanguageFromLocale(_locale);
+    lang = language;
     changeLanguage(_locale.languageCode);
   }
 
   Future<void> setTheme(MyTheme _theme) async {
-    this.theme.value = _theme;
     selectedTheme = _theme;
     MyTheme.set(_theme.type);
   }
 
   Future<void> setEnvironment(Environment _environment) async {
-    this.env.value = environment;
     environment = _environment;
     Environment.set(_environment.type);
   }

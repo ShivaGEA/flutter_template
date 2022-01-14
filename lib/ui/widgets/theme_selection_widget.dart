@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/config/theme/theme.dart';
 
-import '../../main.dart';
+import '../../app.dart';
 
 typedef OnThemeSelect = void Function(MyTheme theme, ThemeType type);
 

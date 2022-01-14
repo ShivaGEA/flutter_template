@@ -14,14 +14,14 @@ class GitDataSourceImpl extends BaseDataSource implements GitDataSource {
 
   GitDataSourceImpl(this.apiClient);
 
-  Future<Either<List<GitRepo>, Message>> repositories() async {
-    return await getResult(apiClient.repositories());
-  }
+  Future<Either<List<GitRepo>, Message>> repositories() =>
+      getResult(apiClient.repositories());
 
-  Future<Either<GitSearchResponse, Message>> search1(String searchTerm) async =>
-      await request(
-          type: NetworkRequest.POST,
-          url: Get.find<Environment>().baseUrl,
-          data: {'language': searchTerm},
-          headers: {});
+  Future<Either<GitSearchResponse, Message>> search1(String searchTerm) =>
+      request(
+        type: NetworkRequest.POST,
+        url: Get.find<Environment>().baseUrl,
+        data: {'language': searchTerm},
+        headers: {},
+      );
 }

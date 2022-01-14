@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:template/data/repositories/git_repository_impl.dart';
@@ -12,7 +13,7 @@ class GitSearchBloc extends Bloc<GitSearchEvent, GitSearchState> {
 
   @override
   Stream<GitSearchState> mapEventToState(GitSearchEvent event) async* {
-    print("===> $event    $state");
+    debugPrint("===> $event    $state");
     if (event is GitLoadMoreEvent) {
       var list = (state as GitLoadedState).list;
       yield GitLoadMoreState(list: list);

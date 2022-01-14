@@ -3,9 +3,9 @@ import 'package:template/ui/pages/git/list/git_search_page.dart';
 import 'package:template/ui/pages/git/list_getx/git_search_page.dart';
 
 class Routes {
-  static const splash = '/splash_screen';
-  static const gitSearch = '/git_search';
-  static const gitSearchGetX = '/git_search_getx';
+  static const splash = '/splash-screen';
+  static const gitSearch = '/git-search';
+  static const gitSearchGetX = '/git-search-getx';
 
   static get pages => [
         GetPage(name: gitSearch, page: () => GitSearchPage()),

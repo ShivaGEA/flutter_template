@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -37,7 +38,7 @@ void main() {
       exprs.forEach((expr, replace) {
         element = element.replaceAll(RegExp(expr), replace);
       });
-      print(element);
+      debugPrint(element);
       //element.escapeNewLineCharacters();
     });
   });

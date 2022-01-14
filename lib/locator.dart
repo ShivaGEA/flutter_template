@@ -28,27 +28,27 @@ Future<void> setupLocator() async {
 
 Future<void> _loadCache() async {
   var instance = await Cache.instance; //loadcache
-  print('==> Cache Env==> ${instance.environment}');
+  debugPrint('==> Cache Env==> ${instance.environment}');
 }
 
 Future<Environment> _setupEnvironment() async {
   var env = Get.put(await Environment.load());
   Get.find<MyAppController>().setEnvironment(env);
-  print("==> Setup Env==> ${env.name}");
+  debugPrint("==> Setup Env==> ${env.name}");
   return env;
 }
 
 Future<Locale> _setupLocale() async {
   var locale = Get.put(await getLocale());
   Get.find<MyAppController>().setLocale(locale);
-  print("==>Locale: $locale");
+  debugPrint("==>Locale: $locale");
   return locale;
 }
 
 Future<MyTheme> _setupTheme() async {
   var theme = Get.put(await MyTheme.get());
   Get.find<MyAppController>().setTheme(theme);
-  print("==> Setup theme==> ${theme.name}");
+  debugPrint("==> Setup theme==> ${theme.name}");
   return theme;
 }
 

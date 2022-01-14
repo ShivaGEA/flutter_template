@@ -40,14 +40,14 @@ abstract class MyTheme {
 
   //save theme type into local database
   static _save(ThemeType type) async {
-    print("Save to cache: theme=> $type");
+    debugPrint("Save to cache: theme=> $type");
     return await (await Cache.instance).saveTheme(type);
   }
 
   //get pre saved theme from Local database
   static Future<ThemeType> _getPreSavedTheme() async {
     var theme = (await Cache.instance).theme;
-    print("From cache: theme=> $theme");
+    debugPrint("From cache: theme=> $theme");
     return _getThemeType(theme ?? '') ?? ThemeType.LIGHT;
   }
 

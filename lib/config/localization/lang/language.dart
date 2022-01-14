@@ -30,16 +30,17 @@ Future<Locale> saveLocale(String languageCode) async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   await _prefs.setString(prefSelectedLanguageCode, languageCode);
 
-  return _locale(languageCode);
+  Locale locale = language2locale(languageCode);
+  return locale;
 }
 
 Future<Locale> getLocale() async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   String languageCode = _prefs.getString(prefSelectedLanguageCode) ?? "en";
-  return _locale(languageCode);
+  return language2locale(languageCode);
 }
 
-Locale _locale(String languageCode) =>
+Locale language2locale(String languageCode) =>
     languageCode.isNotEmpty ? Locale(languageCode, '') : Locale('en', '');
 
 void changeLanguage(String languageCode) async {

@@ -39,7 +39,7 @@ abstract class Environment {
     return _env;
   }
 
-  // Load the environment from below priority order
+  // it Load the environment from below priority order
   // Command
   // Cache
   // Default type

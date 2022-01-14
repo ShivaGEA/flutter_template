@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:template/config/localization/lang/language.dart';
 import 'package:template/domain/datasources/database/entities/git_repo.dart';
-import 'package:template/main.dart';
 import 'package:template/ui/widgets/bottom_loader.dart';
 import 'package:template/ui/widgets/language_selection_dropdown.dart';
 import 'package:template/ui/widgets/loader.dart';
@@ -77,7 +75,7 @@ class GitPage extends GetView<GitSearchController> {
       );
 
   Widget _body(GitPageState state) {
-    print("==>body state: $state");
+    debugPrint("==>body state: $state");
     if (state is GitPageLoadedState) {
       return _listing(list: state.list ?? [], state: state);
     } else if (state is GitPageLoadingState)
@@ -94,30 +92,4 @@ class GitPage extends GetView<GitSearchController> {
       BottomLoader(state is GitPageLoadMoreState, () {
         controller.onEvent(GitPageLoadMoreEvent());
       });
-
-  Widget _createLanguageDropDown() {
-    return DropdownButton<String>(
-      iconSize: 30,
-      hint: Text(lang.selectLanguage),
-      onChanged: (language) {
-        print("Language===> $language");
-        if (language != null)
-          Get.find<MyAppController>().setLocaleByLanguageCode(language);
-      },
-      items: languages.keys
-          .map<DropdownMenuItem<String>>(
-            (e) => DropdownMenuItem<String>(
-              value: e,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(e, style: TextStyle(fontSize: 20)),
-                  Text(languages[e] ?? '')
-                ],
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
 }

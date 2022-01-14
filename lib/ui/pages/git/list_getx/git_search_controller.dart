@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:template/data/repositories/git_repository_impl.dart';
 
@@ -11,13 +12,13 @@ class GitSearchController extends GetxController {
 
   @override
   void onInit() {
-    print("init=> ");
+    debugPrint("init=> ");
     onEvent(GitPageLoadEvent());
     super.onInit();
   }
 
   void onEvent(GitPageEvent event) async {
-    print('Event==> $event  ${state.value}');
+    debugPrint('Event==> $event  ${state.value}');
     if (event is GitPageLoadMoreEvent)
       await loadMoreEvent();
     else if (event is GitPageLoadEvent)
@@ -39,7 +40,7 @@ class GitSearchController extends GetxController {
         },
         (r) => GitPageErrorState(),
       );
-      print('end=> ${state.value}');
+      debugPrint('end=> ${state.value}');
     }
   }
 
@@ -50,7 +51,7 @@ class GitSearchController extends GetxController {
       (l) => GitPageLoadedState(list: l),
       (r) => GitPageErrorState(),
     );
-    print('end=> ${state.value}');
+    debugPrint('end=> ${state.value}');
   }
 
   Future<void> gitPageReloadEvent() async {
@@ -60,6 +61,6 @@ class GitSearchController extends GetxController {
       (l) => GitPageLoadedState(list: l),
       (r) => GitPageErrorState(),
     );
-    print('end=> ${state.value}');
+    debugPrint('end=> ${state.value}');
   }
 }
