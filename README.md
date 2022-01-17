@@ -16,6 +16,8 @@ Configuration will be done based on below respective file(environment)
 
 **Folder Structure**
 
+![Flutter Folder Structure](https://github.com/ShivaGEA/flutter_template/blob/main/resources/Flutter%20Folder%20Structure.png)
+
 
 
 **Libraries**
