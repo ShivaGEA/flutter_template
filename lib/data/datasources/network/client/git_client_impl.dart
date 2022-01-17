@@ -14,6 +14,7 @@ abstract class GitClientImpl extends GitClient {
   @GET(Environment.gitRepositories)
   Future<List<GitRepo>> repositories();
 
+  @override
   @GET(Environment.gitSearch)
   Future<GitRepo> search();
 }

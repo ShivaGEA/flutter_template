@@ -47,13 +47,13 @@ class _GitSearchPageState extends State<GitSearchPage> {
           _bloc!..add(GitReloadEvent());
         },
         tooltip: 'Refresh',
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  Widget _listing({required List<GitRepo> list, state: GitLoadedState}) {
-    if (list.length > 0)
+  Widget _listing({required List<GitRepo> list, state = GitLoadedState}) {
+    if (list.isNotEmpty)
       return ListView.builder(
         itemCount: list.length + 1,
         itemBuilder: (context, i) =>
@@ -64,17 +64,17 @@ class _GitSearchPageState extends State<GitSearchPage> {
   }
 
   Widget _listItem(GitRepo repo, int index) => Container(
-      margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       color: Colors.black12,
-      child: Text("${index + 1}: " +
+      child: Text('${index + 1}: ' +
           (repo.name ?? '') +
-          "(" +
+          '(' +
           (repo.fullName ?? '') +
-          ") " +
-          "\nUrl: " +
+          ') ' +
+          '\nUrl: ' +
           (repo.url ?? '') +
-          "\nDescription: " +
+          '\nDescription: ' +
           (repo.description ?? '')));
 
   Widget _body() {
@@ -82,13 +82,13 @@ class _GitSearchPageState extends State<GitSearchPage> {
         create: (context) => _bloc!,
         child: BlocBuilder<GitSearchBloc, GitSearchState>(
             builder: (BuildContext context, GitSearchState state) {
-          debugPrint("state==> $state");
+          debugPrint('state==> $state');
           if (state is GitLoadedState)
             return _listing(list: state.list ?? [], state: state);
           else if (state is GitLoadingState)
             return _loader();
           else if (state is GitInitialState)
-            return Container(child: Center(child: Text("Init screen")));
+            return Container(child: const Center(child: Text('Init screen')));
           else
             return _listing(list: [], state: state);
         }));
@@ -102,4 +102,4 @@ class _GitSearchPageState extends State<GitSearchPage> {
       });
 }
 
-lText(search) => Text(search);
+Text lText(search) => Text(search);

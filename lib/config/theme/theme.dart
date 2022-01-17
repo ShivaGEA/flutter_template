@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shqs_util/utilities/logger/logger.dart';
-import 'package:template/config/theme/blue_theme.dart';
-import 'package:template/config/theme/red_theme.dart';
-import 'package:template/config/theme/yellow_theme.dart';
 import 'package:template/data/cache.dart';
 
+import 'blue_theme.dart';
 import 'dark_theme.dart';
-import 'green_theme.dart';
 import 'light_theme.dart';
 
 enum ThemeType { LIGHT, DARK, BLUE, RED, YELLOW, GREEN }
@@ -39,31 +36,28 @@ abstract class MyTheme {
   // Default type
 
   //save theme type into local database
-  static _save(ThemeType type) async {
-    debugPrint("Save to cache: theme=> $type");
+  static Future<void> _save(ThemeType type) async {
+    debugPrint('Save to cache: theme=> $type');
     return await (await Cache.instance).saveTheme(type);
   }
 
   //get pre saved theme from Local database
   static Future<ThemeType> _getPreSavedTheme() async {
-    var theme = (await Cache.instance).theme;
-    debugPrint("From cache: theme=> $theme");
+    final theme = (await Cache.instance).theme;
+    debugPrint('From cache: theme=> $theme');
     return _getThemeType(theme ?? '') ?? ThemeType.LIGHT;
   }
 
   //String to ThemeType (enum) conversion
-  static _getThemeType(String type) => type != ''
+  static ThemeType? _getThemeType(String type) => type != ''
       ? ThemeType.values.firstWhere((element) => element.toString() == type)
       : null;
 
   static MyTheme getTheme(ThemeType type) {
     if (type == ThemeType.LIGHT) return LightTheme.instance;
     if (type == ThemeType.DARK) return DarkTheme.instance;
-    if (type == ThemeType.BLUE) return BlueTheme.instance;
-    if (type == ThemeType.RED) return RedTheme.instance;
-    if (type == ThemeType.YELLOW) return YellowTheme.instance;
-    if (type == ThemeType.GREEN)
-      return GreenTheme.instance;
+    if (type == ThemeType.BLUE)
+      return BlueTheme.instance;
     else
       return LightTheme.instance; //Default Theme
   }

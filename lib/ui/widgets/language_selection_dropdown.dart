@@ -17,7 +17,7 @@ class LanguageSelectionDropDown extends StatelessWidget {
       iconSize: 30,
       hint: Text(lang.selectLanguage),
       onChanged: (language) {
-        debugPrint("Language===> $language");
+        debugPrint('Language===> $language');
         if (language != null) {
           //Get.find<MyAppController>().setLocaleByLanguageCode(language);
           MyApp.of(context)?.setLocaleByLanguage(language);
@@ -30,7 +30,7 @@ class LanguageSelectionDropDown extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(e, style: TextStyle(fontSize: 20)),
+                  Text(e, style: const TextStyle(fontSize: 20)),
                   Text(languages[e] ?? '')
                 ],
               ),

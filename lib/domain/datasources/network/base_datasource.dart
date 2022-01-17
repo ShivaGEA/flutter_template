@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:template/data/datasources/network/response/api_response.dart';
-import 'package:template/data/enum/network_request.dart';
 import 'package:template/domain/datasources/network/exceptions/network_exceptions.dart';
+import 'package:template/domain/enum/network_request.dart';
 
 import 'network_request_handler.dart';
+import 'response/api_response.dart';
 
 enum Message { IGNORED, SNACK_BAR, DIALOG }
 
@@ -15,7 +15,7 @@ class BaseDataSource extends NetworkHandler {
       required String url,
       required Map<String, dynamic> headers,
       required Map<String, dynamic> data}) async {
-    var resp =
+    final resp =
         processRequest(type: type, url: url, headers: headers, data: data);
     return handleResponse<T>(url, resp);
   }
@@ -23,32 +23,32 @@ class BaseDataSource extends NetworkHandler {
   Future<Either<T, Message>> handleResponse<T extends ApiResponse>(
       String type, dynamic res) async {
     try {
-      var resp = ApiResponse.fromJson(res) as T;
+      final resp = ApiResponse.fromJson(res) as T;
       return Left(resp);
     } catch (e) {
-      var exception = NetworkExceptions.getDioException(e);
-      var msg = handleException(exception);
+      final exception = NetworkExceptions.getDioException(e);
+      final msg = handleException(exception);
       return Right(msg);
     }
   }
 
   Future<Either<T, Message>> getResult<T>(Future<T> apiCall) async {
     try {
-      debugPrint("===>Api  $apiCall");
-      var resp = await apiCall;
-      debugPrint("===>Api end resp: ");
-      debugPrint("$resp");
+      debugPrint('===>Api  $apiCall');
+      final resp = await apiCall;
+      debugPrint('===>Api end resp: ');
+      debugPrint('$resp');
       return Left(resp);
     } catch (e) {
-      debugPrint("===>Api Exception: ${e.toString()}");
-      var exception = NetworkExceptions.getDioException(e);
-      var msg = handleException(exception);
+      debugPrint('===>Api Exception: ${e.toString()}');
+      final exception = NetworkExceptions.getDioException(e);
+      final msg = handleException(exception);
       return Right(msg);
     }
   }
 
   Message handleException(NetworkExceptions networkExceptions) {
-    var exceptionMessage = networkExceptions.toString();
+    final exceptionMessage = networkExceptions.toString();
     networkExceptions.when(requestCancelled: () {
       return msg(Message.IGNORED, exceptionMessage);
     }, unauthorizedRequest: () {

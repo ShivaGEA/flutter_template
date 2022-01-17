@@ -5,7 +5,7 @@ abstract class BasePage<T extends GetxController> extends GetView<T> {
   void showToast() {}
 
   void showSnackBar(String title, String message,
-      {snackPosition: SnackPosition.TOP}) {
+      {snackPosition = SnackPosition.TOP}) {
     Get.snackbar(title, message, snackPosition: snackPosition);
   }
 }
@@ -16,7 +16,7 @@ abstract class BasePageState<T extends StatefulWidget> extends State<T> {
   Widget onPageBuild(BuildContext context);
 
   void showSnackBar(String title, String message,
-      {snackPosition: SnackPosition.TOP}) {
+      {snackPosition = SnackPosition.TOP}) {
     Get.snackbar(title, message, snackPosition: snackPosition);
   }
 }

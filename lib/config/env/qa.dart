@@ -8,7 +8,7 @@ class QA extends Environment {
   BuildType get type => BuildType.QA;
 
   @override
-  String baseUrl = "https://api.github.com";
+  String baseUrl = 'https://api.github.com';
 
   QA._privateConstructor();
   static final Environment _instance = QA._privateConstructor();

@@ -2,7 +2,8 @@
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child user_interface.widgets in the widget
+// gestures. You can also use WidgetTester to find child user_interface.widgets
+// in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/cupertino.dart';
@@ -31,13 +32,13 @@ void main() {
     history = await GeLog.history();
     equals(33, history.length);
 
-    var deb = await GeLog.history(filter: 'debug');
+    final deb = await GeLog.history(filter: 'debug');
     equals(11, deb.length);
 
-    var warn = await GeLog.history(filter: 'warn');
+    final warn = await GeLog.history(filter: 'warn');
     equals(11, warn.length);
 
-    var error = await GeLog.history(filter: 'error');
+    final error = await GeLog.history(filter: 'error');
     equals(11, error.length);
 
     GeLog.d('name', 'history: ${history.length}');

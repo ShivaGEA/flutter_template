@@ -24,7 +24,7 @@ class _GitClientImpl implements GitClientImpl {
                 .compose(_dio.options, '/repositories',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
+    final value = _result.data!
         .map((dynamic i) => GitRepo.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;

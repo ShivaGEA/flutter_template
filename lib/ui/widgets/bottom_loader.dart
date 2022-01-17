@@ -14,18 +14,18 @@ class BottomLoader extends StatelessWidget {
   Widget _loadMore() {
     return showLoader
         ? Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Center(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 25,
                     height: 25,
                     child: CircularProgressIndicator(),
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Text(lang.loading),
                 ],
               ),
@@ -34,7 +34,7 @@ class BottomLoader extends StatelessWidget {
         : InkWell(
             onTap: onTap,
             child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Center(child: Text(lang.loadMore))),
           );
   }

@@ -28,7 +28,7 @@ abstract class ShqsSharedPreferences {
   }
 
   dynamic getObject(String key, Function fromMapClosure) {
-    var jsonString = getString(key);
+    final jsonString = getString(key);
     if (jsonString != null) {
       try {
         final map = json.decode(jsonString);

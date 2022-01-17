@@ -33,7 +33,6 @@ class ThemeSelectionWidget extends StatelessWidget {
               width: 18,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: selectedTheme.theme.accentColor,
                 border: Border.all(
                   width: 2,
                   color: Colors.black45,
@@ -41,7 +40,7 @@ class ThemeSelectionWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.all(4.0)),
+            const Padding(padding: EdgeInsets.all(4.0)),
             Text(lang.theme)
           ],
         )),
@@ -54,7 +53,7 @@ class ThemeSelectionWidget extends StatelessWidget {
       context: Get.context!,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Select Theme"),
+          title: const Text('Select Theme'),
           content: Container(
             height: 300.0, // Change as per your requirement
             width: 300.0,
@@ -66,24 +65,23 @@ class ThemeSelectionWidget extends StatelessWidget {
   }
 
   Widget _dialogItem(ThemeType themeType) {
-    var theme = MyTheme.getTheme(themeType);
+    final theme = MyTheme.getTheme(themeType);
     return InkWell(
       onTap: () {
         if (onThemeSelected != null) onThemeSelected!(theme, themeType);
       },
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(8.0),
-        margin: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(4.0),
         child: Row(
           children: [
             Container(
               width: 20,
               height: 20,
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: theme.theme.accentColor,
                 border: Border.all(
                   width: 2,
                   color: Colors.white,
@@ -99,7 +97,7 @@ class ThemeSelectionWidget extends StatelessWidget {
   }
 
   Widget _themesList() {
-    var list = ThemeType.values;
+    const list = ThemeType.values;
     return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,

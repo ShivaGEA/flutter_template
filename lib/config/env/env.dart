@@ -14,13 +14,13 @@ abstract class Environment {
   BuildType get type => BuildType.DEV;
   String get baseUrl;
 
-  static const login = "/login";
-  static const signup = "/signup";
-  static const profile = "/profile";
-  static const updateProfile = "/updateProfile";
-  static const resetPassword = "/resetPassword";
-  static const gitRepositories = "/repositories";
-  static const gitSearch = "/search";
+  static const login = '/login';
+  static const signup = '/signup';
+  static const profile = '/profile';
+  static const updateProfile = '/updateProfile';
+  static const resetPassword = '/resetPassword';
+  static const gitRepositories = '/repositories';
+  static const gitSearch = '/search';
 
   static late Environment _env;
   static bool _isInitialised = false;
@@ -44,9 +44,9 @@ abstract class Environment {
   // Cache
   // Default type
   static Future<Environment> load() async {
-    String type = String.fromEnvironment('Environment');
-    BuildType? buildType = _getBuildType(type);
-    var preSavedEnv = await _getPreSavedEnv();
+    const String type = String.fromEnvironment('Environment');
+    final BuildType? buildType = _getBuildType(type);
+    final preSavedEnv = await _getPreSavedEnv();
     return await Environment.set(buildType ?? preSavedEnv);
   }
 

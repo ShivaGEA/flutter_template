@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:template/data/enum/network_request.dart';
+import 'package:template/domain/enum/network_request.dart';
 
 class NetworkHandler {
-  Dio _dio = Get.find<Dio>();
+  final Dio _dio = Get.find<Dio>();
 
   dynamic processRequest(
       {required NetworkRequest type,

@@ -7,9 +7,7 @@ class DarkTheme extends MyTheme {
         brightness: Brightness.dark,
         primarySwatch: Colors.grey,
         primaryColor: Colors.grey,
-        accentColor: Colors.black,
         backgroundColor: const Color(0xFFE5E5E5),
-        accentIconTheme: IconThemeData(color: Colors.white),
         dividerColor: Colors.white54,
 
         // Define the default font family.
@@ -30,7 +28,7 @@ class DarkTheme extends MyTheme {
   static MyTheme get instance => _instance;
 
   @override
-  String name = "Dark Theme";
+  String name = 'Dark Theme';
 
   @override
   ThemeType get type => ThemeType.DARK;

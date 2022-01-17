@@ -19,36 +19,36 @@ Future<void> setupLocator() async {
   Get.put(MyAppController());
 
   await _loadCache();
-  var env = await _setupEnvironment();
-  var locale = await _setupLocale();
-  var theme = await _setupTheme();
+  final env = await _setupEnvironment();
+  final locale = await _setupLocale();
+  final theme = await _setupTheme();
   Get.find<MyAppController>().init(env, locale, theme);
   await _setupResources();
 }
 
 Future<void> _loadCache() async {
-  var instance = await Cache.instance; //loadcache
+  final instance = await Cache.instance; //loadcache
   debugPrint('==> Cache Env==> ${instance.environment}');
 }
 
 Future<Environment> _setupEnvironment() async {
-  var env = Get.put(await Environment.load());
+  final env = Get.put(await Environment.load());
   Get.find<MyAppController>().setEnvironment(env);
-  debugPrint("==> Setup Env==> ${env.name}");
+  debugPrint('==> Setup Env==> ${env.name}');
   return env;
 }
 
 Future<Locale> _setupLocale() async {
-  var locale = Get.put(await getLocale());
+  final locale = Get.put(await getLocale());
   Get.find<MyAppController>().setLocale(locale);
-  debugPrint("==>Locale: $locale");
+  debugPrint('==>Locale: $locale');
   return locale;
 }
 
 Future<MyTheme> _setupTheme() async {
-  var theme = Get.put(await MyTheme.get());
+  final theme = Get.put(await MyTheme.get());
   Get.find<MyAppController>().setTheme(theme);
-  debugPrint("==> Setup theme==> ${theme.name}");
+  debugPrint('==> Setup theme==> ${theme.name}');
   return theme;
 }
 

@@ -2,7 +2,8 @@
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child user_interface.widgets in the widget
+// gestures. You can also use WidgetTester to find child user_interface.widgets
+// in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/cupertino.dart';
@@ -12,11 +13,11 @@ import 'package:template/config/theme/theme.dart';
 import 'package:template/locator.dart';
 
 void main() {
-  test("Init Test", () async {
+  test('Init Test', () async {
     await setupLocator();
   });
 
-  test("Environment Test", () async {
+  test('Environment Test', () async {
     var env = await Environment.get();
     assert(env.name == BuildType.DEV.toString());
 
@@ -33,7 +34,7 @@ void main() {
     assert(env.name == BuildType.PROD.toString());
   });
 
-  test("Theme Test", () async {
+  test('Theme Test', () async {
     var theme = await MyTheme.get();
     assert(theme.name == ThemeType.LIGHT.toString());
 
@@ -45,7 +46,7 @@ void main() {
   });
 
   test('New Line Character Elimination Test', () async {
-    var mockData = <String>[
+    final mockData = <String>[
       '1) Check for proper installation and proper standpipe height\\n2) Check '
           'drain filter for blockage. Clean.\\n3) Check pressure sensor frequency'
           ' (Hz) and pressure sensor hose.\\n4) Check resistance of the drain '
@@ -62,7 +63,7 @@ void main() {
           '\\n9) Educate consumer on OOB/random re-distribute of loads \\n\\n\t\t'
     ];
 
-    var exprs = {
+    final expression = {
       '\\\\n': '\n',
       '\\n': '\n',
       //'\n':'\n',
@@ -74,10 +75,10 @@ void main() {
     };
 
     mockData.forEach((element) {
-      exprs.forEach((expr, replace) {
+      expression.forEach((expr, replace) {
         element = element.replaceAll(RegExp(expr), replace);
       });
-      element = element.replaceAll(new RegExp(r'\\'), '');
+      element = element.replaceAll(RegExp(r'\\'), '');
       debugPrint(element);
     });
   });

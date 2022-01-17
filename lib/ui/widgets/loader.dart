@@ -10,8 +10,8 @@ class Loader extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 15),
+          const CircularProgressIndicator(),
+          const SizedBox(height: 15),
           Text(lang.loading),
         ],
       ),

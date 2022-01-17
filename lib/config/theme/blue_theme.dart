@@ -7,9 +7,7 @@ class BlueTheme extends MyTheme {
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blueAccent,
-        accentColor: Colors.blue,
         backgroundColor: const Color(0xFFE5E5E5),
-        accentIconTheme: IconThemeData(color: Colors.white),
         dividerColor: Colors.white54,
 
         // Define the default font family.
@@ -30,7 +28,7 @@ class BlueTheme extends MyTheme {
   static MyTheme get instance => _instance;
 
   @override
-  String name = "Blue Theme";
+  String name = 'Blue Theme';
 
   @override
   ThemeType get type => ThemeType.BLUE;

@@ -12,7 +12,7 @@ class GitSearchController extends GetxController {
 
   @override
   void onInit() {
-    debugPrint("init=> ");
+    debugPrint('init=> ');
     onEvent(GitPageLoadEvent());
     super.onInit();
   }

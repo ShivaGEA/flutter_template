@@ -4,39 +4,39 @@ import 'dart:math';
 import 'package:uuid/uuid.dart';
 
 class UUID {
-  static String get randomUuid => Uuid().v1();
+  static String get randomUuid => const Uuid().v1();
 }
 
 extension ShqsString on String {
   /// Make JsonString to formatted String
-  String pretty() => JsonEncoder.withIndent('  ').convert(json.decode(this));
+  String pretty() =>
+      const JsonEncoder.withIndent('  ').convert(json.decode(this));
 
   /// Parse to URI
   Uri get toUri => Uri.parse(this);
 
   /// Parse to escapeNewLineCharacters
-  String escapeNewLineCharacters(){
-
-    var exprs= {
-      '\\\\n':'\n',
-      '\\n':'\n',
+  String escapeNewLineCharacters() {
+    final expression = {
+      '\\\\n': '\n',
+      '\\n': '\n',
       //'\n':'\n',
-      '\t':'',
-      '\r':'',
+      '\t': '',
+      '\r': '',
       //'\\\\\\\\':'',
-      '\\\\':'',
+      '\\\\': '',
       //'\\':'',
     };
     var data = this;
-    exprs.forEach((expr, replace) {data = data.replaceAll( RegExp(expr), replace);});
+    expression.forEach((expr, replace) {
+      data = data.replaceAll(RegExp(expr), replace);
+    });
     //print(data);
     return data;
   }
-
 }
 
 extension Version on String {
-
   // lhs < rhs = -1
   // lhs == rhs = 0
   // lhs > rhs = 1

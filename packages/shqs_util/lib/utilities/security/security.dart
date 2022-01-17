@@ -17,8 +17,9 @@ class SecurityUtils {
   }
 
   static IV get _defaultIv {
-    final bytes =
-        utf8.encode(Base64Encoder().convert(_baseByteArray)).sublist(0, 16);
+    final bytes = utf8
+        .encode(const Base64Encoder().convert(_baseByteArray))
+        .sublist(0, 16);
     return IV(Uint8List.fromList(bytes));
   }
 
@@ -55,8 +56,9 @@ class SecurityUtils {
   }
 
   static IV _generateIv(String seed) {
-    final bytes =
-        utf8.encode(Base64Encoder().convert(seed.codeUnits)).sublist(0, 16);
+    final bytes = utf8
+        .encode(const Base64Encoder().convert(seed.codeUnits))
+        .sublist(0, 16);
     return IV(Uint8List.fromList(bytes));
   }
 }

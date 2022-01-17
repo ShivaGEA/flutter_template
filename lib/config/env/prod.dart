@@ -8,7 +8,7 @@ class PROD extends Environment {
   BuildType get type => BuildType.PROD;
 
   @override
-  String baseUrl = "https://api.github.com";
+  String baseUrl = 'https://api.github.com';
 
   PROD._privateConstructor();
   static final Environment _instance = PROD._privateConstructor();

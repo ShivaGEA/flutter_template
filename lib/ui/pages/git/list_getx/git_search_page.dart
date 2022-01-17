@@ -41,13 +41,13 @@ class GitPage extends GetView<GitSearchController> {
           controller.onEvent(GitPageReloadEvent());
         },
         tooltip: 'Refresh',
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  Widget _listing({required List<GitRepo> list, state: GitPageLoadedState}) {
-    if (list.length > 0)
+  Widget _listing({required List<GitRepo> list, state = GitPageLoadedState}) {
+    if (list.isNotEmpty)
       return ListView.builder(
         itemCount: list.length + 1,
         itemBuilder: (context, i) =>
@@ -58,30 +58,30 @@ class GitPage extends GetView<GitSearchController> {
   }
 
   Widget _listItem(GitRepo repo, int index) => Container(
-        margin: EdgeInsets.all(10.0),
-        padding: EdgeInsets.all(10.0),
+        margin: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         color: Colors.black12,
         child: Text(
-          "${index + 1}: " +
+          '${index + 1}: ' +
               (repo.name ?? '') +
-              "(" +
+              '(' +
               (repo.fullName ?? '') +
-              ") " +
-              "\nUrl: " +
+              ') ' +
+              '\nUrl: ' +
               (repo.url ?? '') +
-              "\nDescription: " +
+              '\nDescription: ' +
               (repo.description ?? ''),
         ),
       );
 
   Widget _body(GitPageState state) {
-    debugPrint("==>body state: $state");
+    debugPrint('==>body state: $state');
     if (state is GitPageLoadedState) {
       return _listing(list: state.list ?? [], state: state);
     } else if (state is GitPageLoadingState)
       return _loader();
     else if (state is GitPageInitialState)
-      return Container(child: Center(child: Text("Init screen")));
+      return Container(child: const Center(child: Text('Init screen')));
     else
       return _listing(list: [], state: state);
   }

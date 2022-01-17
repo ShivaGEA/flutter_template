@@ -1,4 +1,6 @@
+import 'package:template/domain/datasources/database/entities/git_repo.dart';
+
 abstract class GitClient {
-  Future repositories();
-  Future search();
+  Future<List<GitRepo>> repositories();
+  Future<GitRepo> search();
 }

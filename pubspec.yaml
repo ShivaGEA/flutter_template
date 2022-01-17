@@ -47,8 +47,8 @@ dev_dependencies:
     sdk: flutter
   freezed: ^0.14.2
   freezed_annotation: ^0.14.2
-  json_serializable:
   floor_generator: ^1.1.0
+  json_serializable:
   analyzer: ^1.1.0
   retrofit_generator: any
   build_runner: any

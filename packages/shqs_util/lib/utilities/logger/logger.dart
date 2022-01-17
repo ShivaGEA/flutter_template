@@ -8,7 +8,6 @@ import 'package:file/memory.dart';
 enum LogLevel { verbose, debug, info, warn, error }
 
 extension _LogLevelOperator on LogLevel {
-
   bool operator <(LogLevel other) => index < other.index;
   bool operator <=(LogLevel other) => index <= other.index;
   bool operator >(LogLevel other) => index > other.index;
@@ -16,7 +15,6 @@ extension _LogLevelOperator on LogLevel {
 }
 
 extension Level on LogLevel {
-
   String get level {
     if (index == LogLevel.verbose.index) return 'verbose';
     if (index == LogLevel.debug.index) return 'debug';
@@ -34,8 +32,8 @@ extension Level on LogLevel {
 /// 'Debug'.d(tag: 'TAG'); // Print `[d] [2021-04-22T13:26:37.199067][TAG] Debug` and return `Debug`
 /// ```
 const _defaultTag = 'Shqs';
-extension LoggerEx on String {
 
+extension LoggerEx on String {
   String v({String tag = _defaultTag}) {
     GeLog.v(tag, this);
     return this;
@@ -62,21 +60,10 @@ extension LoggerEx on String {
   }
 }
 
-enum AnsiColor {
-  black,
-  red,
-  green,
-  yellow,
-  blue,
-  magenta,
-  cyan,
-  white,
-  grey
-}
+enum AnsiColor { black, red, green, yellow, blue, magenta, cyan, white, grey }
 
 // https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 extension Code on AnsiColor {
-
   String get code {
     if (index == AnsiColor.black.index) return '30';
     if (index == AnsiColor.red.index) return '31';
@@ -100,14 +87,13 @@ class GeLog {
   static var _warnColor = AnsiColor.yellow;
   static var _errorColor = AnsiColor.red;
 
-  static void setProperty({
-    AnsiColor verbose = AnsiColor.grey,
-    AnsiColor debug = AnsiColor.grey,
-    AnsiColor info = AnsiColor.green,
-    AnsiColor warn = AnsiColor.yellow,
-    AnsiColor error = AnsiColor.red,
-    bool encrypt = false
-  }) {
+  static void setProperty(
+      {AnsiColor verbose = AnsiColor.grey,
+      AnsiColor debug = AnsiColor.grey,
+      AnsiColor info = AnsiColor.green,
+      AnsiColor warn = AnsiColor.yellow,
+      AnsiColor error = AnsiColor.red,
+      bool encrypt = false}) {
     _verboseColor = verbose;
     _debugColor = debug;
     _infoColor = info;
@@ -149,7 +135,8 @@ class GeLog {
     }
   }
 
-  static void e(String tag, String message, {Error? error, Exception? exception}) {
+  static void e(String tag, String message,
+      {Error? error, Exception? exception}) {
     if (logLevel <= LogLevel.error) {
       var log = '';
       final base = '[e] [$_time][$tag] $message';
@@ -179,7 +166,7 @@ class GeLog {
   }
 
   static List<String> _filter(String? tag) {
-    var filtered = <String>[];
+    final filtered = <String>[];
     if (tag != null) {
       for (MapEntry entry in _history) {
         if (entry.key == tag) filtered.add(entry.value);
@@ -222,7 +209,8 @@ class GeLog {
 /// Extend Dio LogInterceptor
 class GeLogInterceptor extends LogInterceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     final requestLog = StringBuffer('\n');
     requestLog.writeln('=====================================================');
     requestLog.writeln('uri : ${options.uri}');
@@ -234,7 +222,8 @@ class GeLogInterceptor extends LogInterceptor {
       requestLog.writeln('connectTimeout : ${options.connectTimeout}');
       requestLog.writeln('sendTimeout : ${options.sendTimeout}');
       requestLog.writeln('receiveTimeout : ${options.receiveTimeout}');
-      requestLog.writeln('receiveDataWhenStatusError : ${options.receiveDataWhenStatusError}');
+      requestLog.writeln(
+          'receiveDataWhenStatusError : ${options.receiveDataWhenStatusError}');
       requestLog.writeln('extra : ${options.extra}');
     }
     requestLog.writeln('-----------------------------------------------------');
@@ -262,11 +251,10 @@ class GeLogInterceptor extends LogInterceptor {
     final requestLog = StringBuffer('\n');
     requestLog.writeln('response status: ${response.statusCode}');
     requestLog.writeln('response statusMessage: ${response.statusMessage}');
-    requestLog.writeln('response data: ${response.data is Uint8List ? 'Uint8List' : response.data}');
+    requestLog.writeln('response data: '
+        '${response.data is Uint8List ? 'Uint8List' : response.data}');
     requestLog.writeln('response isRedirect: ${response.isRedirect}');
     GeLog.d('Response', requestLog.toString());
-
-
 
     handler.next(response);
   }
@@ -281,7 +269,8 @@ class GeLogInterceptor extends LogInterceptor {
       if (err.response != null) {
         GeLog.e('DioError', _buildResponseLog(err.response!, log: errorLog));
       } else {
-        errorLog.writeln('=====================================================');
+        errorLog
+            .writeln('=====================================================');
         GeLog.e('DioError', errorLog.toString());
       }
     }
@@ -290,7 +279,8 @@ class GeLogInterceptor extends LogInterceptor {
   }
 
   String _buildResponseLog(Response response, {StringBuffer? log}) {
-    log ??= StringBuffer('\n=====================================================\n');
+    log ??= StringBuffer(
+        '\n=====================================================\n');
     log.writeln('uri : ${response.requestOptions.uri}');
 
     if (responseHeader) {

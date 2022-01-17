@@ -8,7 +8,7 @@ class UAT extends Environment {
   BuildType get type => BuildType.UAT;
 
   @override
-  String baseUrl = "https://api.github.com";
+  String baseUrl = 'https://api.github.com';
 
   UAT._privateConstructor();
   static final Environment _instance = UAT._privateConstructor();

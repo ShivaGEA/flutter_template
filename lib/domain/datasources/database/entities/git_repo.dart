@@ -22,22 +22,22 @@ class GitRepo {
   );
 
   GitRepo.fromJson(dynamic json) {
-    id = json["id"];
-    name = json["name"];
-    fullName = json["full_name"];
-    owner = jsonEncode(json["owner"]);
-    description = json["description"];
-    url = json["url"];
+    id = json['id'];
+    name = json['name'];
+    fullName = json['full_name'];
+    owner = jsonEncode(json['owner']);
+    description = json['description'];
+    url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
-    var map = <String, dynamic>{};
-    map["id"] = id;
-    map["name"] = name;
-    map["full_name"] = fullName;
-    map["owner"] = owner != null ? jsonDecode(owner!) : null;
-    map["description"] = description;
-    map["url"] = url;
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['name'] = name;
+    map['full_name'] = fullName;
+    map['owner'] = owner != null ? jsonDecode(owner!) : null;
+    map['description'] = description;
+    map['url'] = url;
     return map;
   }
 }

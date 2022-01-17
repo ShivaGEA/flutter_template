@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         theme: theme.theme,
         locale: locale,
         supportedLocales: languages.keys.map((key) => Locale(key, '')).toList(),
-        localizationsDelegates: [
+        localizationsDelegates: const [
           AppLocalizationsDelegate(),
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -100,14 +100,14 @@ class MyAppController {
   }
 
   Future<void> setLocale(Locale _locale) async {
-    var language = getLanguageFromLocale(_locale);
+    final language = getLanguageFromLocale(_locale);
     lang = language;
     changeLanguage(_locale.languageCode);
   }
 
   Future<void> setLocaleByLanguageCode(String languageCode) async {
-    var _locale = await saveLocale(languageCode);
-    var language = getLanguageFromLocale(_locale);
+    final _locale = await saveLocale(languageCode);
+    final language = getLanguageFromLocale(_locale);
     lang = language;
     changeLanguage(_locale.languageCode);
   }

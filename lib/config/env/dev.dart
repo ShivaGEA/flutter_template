@@ -8,7 +8,7 @@ class DEV extends Environment {
   BuildType get type => BuildType.DEV;
 
   @override
-  String baseUrl = "https://api.github.com";
+  String baseUrl = 'https://api.github.com';
 
   DEV._privateConstructor();
   static final Environment _instance = DEV._privateConstructor();

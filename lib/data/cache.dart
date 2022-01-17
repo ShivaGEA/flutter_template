@@ -6,9 +6,9 @@ import 'package:template/config/env/env.dart';
 import 'package:template/config/theme/theme.dart';
 
 class _Key {
-  static final String environment = 'environment';
-  static final String theme = 'theme';
-  static final String locale = 'locale';
+  static const String environment = 'environment';
+  static const String theme = 'theme';
+  static const String locale = 'locale';
 }
 
 class Cache {

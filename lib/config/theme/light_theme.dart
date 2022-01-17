@@ -7,9 +7,7 @@ class LightTheme extends MyTheme {
         brightness: Brightness.light,
         primarySwatch: Colors.pink,
         primaryColor: Colors.pinkAccent,
-        accentColor: Colors.pink,
         backgroundColor: const Color(0xFFE5E5E5),
-        accentIconTheme: IconThemeData(color: Colors.white),
         dividerColor: Colors.white54,
 
         // Define the default font family.
@@ -30,7 +28,7 @@ class LightTheme extends MyTheme {
   static LightTheme get instance => _instance;
 
   @override
-  String name = "Light Theme";
+  String name = 'Light Theme';
 
   @override
   ThemeType get type => ThemeType.LIGHT;

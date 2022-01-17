@@ -7,7 +7,7 @@ class Routes {
   static const gitSearch = '/git-search';
   static const gitSearchGetX = '/git-search-getx';
 
-  static get pages => [
+  static List<GetPage> get pages => [
         GetPage(name: gitSearch, page: () => GitSearchPage()),
         GetPage(name: gitSearchGetX, page: () => GitPage()),
       ];
