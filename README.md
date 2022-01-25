@@ -3,7 +3,7 @@ Flutter Basic Template Application
 
 
 **Architecture Design**
-![Architecture Diagram](https://github.appl.ge.com/Mobile-COE/Flutter-Template/blob/main/resources/clean_architecture_diagram.png)
+![Architecture Diagram](resources/clean_architecture_diagram.png)
 
 
 **Environments**
@@ -15,7 +15,7 @@ Configuration will be done based on below respective file(environment)
 
 
 **Folder Structure**
-![Flutter Folder Structure](https://github.appl.ge.com/Mobile-COE/Flutter-Template/blob/main/resources/Flutter%20Folder%20Structure.png)
+![Flutter Folder Structure](resources/Flutter%20Folder%20Structure.png)
 
 
 **Libraries**
