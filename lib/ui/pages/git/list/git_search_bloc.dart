@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:template/data/repositories/git_repository_impl.dart';
 
+import '/data/repositories/git_repository_impl.dart';
 import 'git_search_event.dart';
 import 'git_search_state.dart';
 

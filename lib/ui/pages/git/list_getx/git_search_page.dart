@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:template/config/routes.dart';
-import 'package:template/domain/datasources/database/entities/git_repo.dart';
-import 'package:template/ui/widgets/bottom_loader.dart';
-import 'package:template/ui/widgets/language_selection_dropdown.dart';
-import 'package:template/ui/widgets/loader.dart';
-import 'package:template/ui/widgets/theme_selection_widget.dart';
 
+import '/config/localization/language.dart';
+import '/config/routes.dart';
+import '/domain/datasources/database/entities/git_repo.dart';
+import '/ui/widgets/bottom_loader.dart';
+import '/ui/widgets/language_selection_dropdown.dart';
+import '/ui/widgets/loader.dart';
+import '/ui/widgets/theme_selection_widget.dart';
 import '../../../../app.dart';
 import 'git_search_controller.dart';
 import 'git_search_event.dart';
@@ -25,7 +26,9 @@ class GitPage extends GetView<GitSearchController> {
   Widget ui(GitSearchController controller) {
     return Obx(() => Scaffold(
           appBar: AppBar(
-            title: Text(lang(Get.context!).search),
+            title: Text(
+              lang(Get.context!).search,
+            ),
             actions: [
               ThemeSelectionWidget((theme, type) {
                 MyApp.setTheme(Get.context!, theme);

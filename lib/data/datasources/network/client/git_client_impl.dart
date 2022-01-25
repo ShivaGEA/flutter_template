@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/http.dart';
-import 'package:template/config/env/env.dart';
 
+import '/config/env/env.dart';
 import '../../../../domain/datasources/database/entities/git_repo.dart';
 import '../../../../domain/datasources/network/client/git_client.dart';
 

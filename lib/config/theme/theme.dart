@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shqs_util/utilities/logger/logger.dart';
-import 'package:template/data/cache.dart';
 
+import '../../data/cache.dart';
 import 'blue_theme.dart';
 import 'dark_theme.dart';
 import 'light_theme.dart';

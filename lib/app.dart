@@ -2,22 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:template/config/routes.dart';
 
 import 'config/env/dev.dart';
 import 'config/env/env.dart';
-import 'config/localization/app_localizations_delegate.dart';
-import 'config/localization/lang/language.dart';
+import 'config/localization/gen/app_localizations.dart';
+import 'config/localization/language.dart';
+import 'config/routes.dart';
 import 'config/theme/light_theme.dart';
 import 'config/theme/theme.dart';
 
 Environment environment = DEV.instance;
 MyTheme selectedTheme = LightTheme.instance;
-
-/*AppLocalizations lang(BuildContext context) => AppLocalizations.of(context);*/
-
-Language lang(BuildContext context) =>
-    Provider.of<MyAppController>(context).language;
 
 class MyApp extends StatelessWidget {
   final appController = Get.find<MyAppController>();
@@ -48,9 +43,9 @@ class MyApp extends StatelessWidget {
         title: 'Template',
         theme: Provider.of<MyAppController>(context).theme.theme,
         locale: Provider.of<MyAppController>(context).locale,
-        supportedLocales: languages.keys.map((key) => Locale(key, '')).toList(),
+        supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: const [
-          AppLocalizationsDelegate(),
+          AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -61,22 +56,17 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppController extends ChangeNotifier {
-  var language = _defaultLanguage;
   var theme = _defaultTheme;
   var env = _defaultEnvironment;
 
-  static Locale get _defaultLocale =>
-      languages.keys.map((key) => Locale(key, '')).toList()[0];
-  static Language get _defaultLanguage => getLanguageFromLocale(_defaultLocale);
   static MyTheme get _defaultTheme => LightTheme.instance;
   static Environment get _defaultEnvironment => DEV.instance;
 
-  Locale? _locale;
-
-  Locale get locale => _locale ?? _defaultLocale;
+  Locale? locale;
+  AppLocalizations? localization;
 
   void clearLocale() {
-    _locale = null;
+    locale = null;
     notifyListeners();
   }
 
@@ -88,9 +78,10 @@ class MyAppController extends ChangeNotifier {
   }
 
   Future<void> setLocale(Locale _locale) async {
-    this._locale = _locale;
-    language = getLanguageFromLocale(_locale);
-    changeLanguage(_locale.languageCode);
+    locale = _locale;
+    localization =
+        lookupAppLocalizations(locale ?? AppLocalizations.supportedLocales[0]);
+    print(_locale);
     notifyListeners();
   }
 

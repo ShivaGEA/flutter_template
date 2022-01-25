@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:template/config/theme/theme.dart';
 
-import '../../app.dart';
+import '/config/localization/language.dart';
+import '../../config/theme/theme.dart';
 
 typedef OnThemeSelect = void Function(MyTheme theme, ThemeType type);
 
@@ -20,27 +20,30 @@ class ThemeSelectionWidget extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(right: 16.0),
         child: Container(
-            child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: 18,
-              width: 18,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 2,
-                  color: Colors.black45,
-                  style: BorderStyle.solid,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 18,
+                width: 18,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.black45,
+                    style: BorderStyle.solid,
+                  ),
                 ),
               ),
-            ),
-            const Padding(padding: EdgeInsets.all(4.0)),
-            Text(lang(Get.context!).theme)
-          ],
-        )),
+              const Padding(padding: EdgeInsets.all(4.0)),
+              Text(
+                lang(context).theme,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -50,10 +53,12 @@ class ThemeSelectionWidget extends StatelessWidget {
       context: Get.context!,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Theme'),
+          title: Text(
+            lang(context).selectLanguage,
+          ),
           content: Container(
             height: 300.0, // Change as per your requirement
-            width: 300.0,
+            width: 200.0,
             child: _themesList(),
           ),
         );

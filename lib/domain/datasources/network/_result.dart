@@ -1,4 +1,4 @@
-import 'package:template/domain/enum/_status.dart';
+import '/domain/enum/_status.dart';
 
 class Result<T> {
   Status status;

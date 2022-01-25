@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:template/config/localization/lang/language.dart';
 
 import '../../app.dart';
+import '../../config/localization/language.dart';
 
 class LanguageSelectionDropDown extends StatelessWidget {
   @override

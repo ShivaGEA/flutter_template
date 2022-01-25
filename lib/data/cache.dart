@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:template/config/env/env.dart';
-import 'package:template/config/theme/theme.dart';
+
+import '/config/env/env.dart';
+import '/config/theme/theme.dart';
 
 class _Key {
   static const String environment = 'environment';

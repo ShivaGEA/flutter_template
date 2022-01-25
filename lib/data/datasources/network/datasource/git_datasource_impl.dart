@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:template/config/env/env.dart';
 
+import '/config/env/env.dart';
 import '../../../../data/datasources/network/client/git_client_impl.dart';
 import '../../../../domain/datasources/database/entities/git_repo.dart';
 import '../../../../domain/datasources/network/base_datasource.dart';

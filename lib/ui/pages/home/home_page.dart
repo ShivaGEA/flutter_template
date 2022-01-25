@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:template/ui/pages/base_page.dart';
+
+import '/ui/pages/base_page.dart';
 
 class HomePage extends BasePage<HomePageController> {
   @override

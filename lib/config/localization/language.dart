@@ -1,19 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:template/app.dart';
 
-abstract class Language {
-  static Language? of(BuildContext context) =>
-      Localizations.of<Language>(context, Language);
+import 'gen/app_localizations.dart';
 
-  String get appName => 'Template';
-  String get name => 'Name';
-  String get selectLanguage => 'Select Language';
-  String get name1;
-  String get loadMore => 'Load More';
-  String get search => 'Search';
-  String get loading => 'Loading...';
-  String get theme => 'Theme';
-}
+AppLocalizations lang(BuildContext context) =>
+    Provider.of<MyAppController>(context).localization!;
 
 const Map<String, String> languages = {
   'en': 'English',

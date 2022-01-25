@@ -1,0 +1,12 @@
+{
+  "frieghtInRs": "किराया (रु.)",
+  "gst" : "जीएसटी ({rate}%) (रु.)",
+  "language": "Hindi",
+  "total":"कुल",
+  "name":"नाम",
+  "selectLanguage":"भाषा का चयन करे",
+  "loadMore":"और लोड करें",
+  "search":"खोज",
+  "loading":"लोड हो रहा है",
+  "theme":"थीम"
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:template/config/theme/theme.dart';
+
+import '/config/theme/theme.dart';
 
 class BlueTheme extends MyTheme {
   @override

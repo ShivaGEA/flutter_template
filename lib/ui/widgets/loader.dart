@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../app.dart';
+import '/config/localization/language.dart';
 
 class Loader extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class Loader extends StatelessWidget {
         children: [
           const CircularProgressIndicator(),
           const SizedBox(height: 15),
-          Text(lang(context).loading),
+          Text(lang(Get.context!).loading),
         ],
       ),
     );

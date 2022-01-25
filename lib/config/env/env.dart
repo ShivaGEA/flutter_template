@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shqs_util/utilities/logger/logger.dart';
-import 'package:template/data/cache.dart';
 
+import '../../data/cache.dart';
 import 'dev.dart';
 import 'prod.dart';
 import 'qa.dart';

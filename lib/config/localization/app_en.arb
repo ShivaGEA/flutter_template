@@ -1,0 +1,21 @@
+{
+  "frieghtInRs": "Freight (Rs)",
+  "gst" : "GST ({rate}%) (Rs)",
+  "@gst":{
+    "description": "Enter % for gst",
+    "placeholders": {
+      "rate": {
+        "type":"String"
+      }
+    }
+  } ,
+
+  "language": "English",
+  "total": "Total",
+  "name":"Name",
+  "selectLanguage":"Select Language",
+  "loadMore":"Load More",
+  "search":"Search",
+  "loading":"Loading...",
+  "theme":"Theme"
+}
