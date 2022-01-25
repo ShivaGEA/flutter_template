@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:template/config/localization/lang/language.dart';
 
 import '../../app.dart';
@@ -18,8 +17,7 @@ class LanguageSelectionDropDown extends StatelessWidget {
       onChanged: (language) {
         debugPrint('Language===> $language');
         if (language != null) {
-          Provider.of<MyAppController>(Get.context!, listen: false)
-              .setLocaleByLanguageCode(language);
+          MyApp.setLocaleByLanguageCode(Get.context!, language);
         }
       },
       items: languages.keys

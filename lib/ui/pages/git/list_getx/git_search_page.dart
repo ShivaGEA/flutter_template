@@ -28,7 +28,7 @@ class GitPage extends GetView<GitSearchController> {
             title: Text(lang(Get.context!).search),
             actions: [
               ThemeSelectionWidget((theme, type) {
-                Get.find<MyAppController>().setTheme(theme);
+                MyApp.setTheme(Get.context!, theme);
                 Get.back();
               }),
               LanguageSelectionDropDown(),

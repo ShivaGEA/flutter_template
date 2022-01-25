@@ -22,17 +22,18 @@ Language lang(BuildContext context) =>
 class MyApp extends StatelessWidget {
   final appController = Get.find<MyAppController>();
 
-  static Future<void> setLocaleByLanguage(String language) async {
+  static Future<void> setLocaleByLanguageCode(
+      BuildContext context, String language) async {
     final _locale = await saveLocale(language);
-    setLocale(_locale);
+    setLocale(context, _locale);
   }
 
-  static void setLocale(Locale locale) {
-    Get.find<MyAppController>().setLocale(locale);
+  static void setLocale(BuildContext context, Locale locale) {
+    Provider.of<MyAppController>(Get.context!, listen: false).setLocale(locale);
   }
 
-  static void setTheme(MyTheme theme) {
-    Get.find<MyAppController>().setTheme(theme);
+  static void setTheme(BuildContext context, MyTheme theme) {
+    Provider.of<MyAppController>(Get.context!, listen: false).setTheme(theme);
   }
 
   static void setEnvironment(Environment environment) {
