@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shqs_util/shqs_util.dart';
 
-abstract class ShqsSharedPreferences {
+abstract class GeaSharedPreferences {
   Future<bool> setBool(String key, bool value);
   Future<bool> setInt(String key, int value);
   Future<bool> setDouble(String key, double value);

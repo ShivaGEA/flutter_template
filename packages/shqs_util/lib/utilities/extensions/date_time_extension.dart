@@ -1,4 +1,4 @@
-extension ShqsDateTime on DateTime {
+extension GeaDateTime on DateTime {
   String fromDateUTCTimeZone() {
     final utcDateTime = toUtc();
     final fromDate =

@@ -57,14 +57,14 @@ abstract class MyTheme {
   static ThemeType? _getThemeType(String type) => type != ''
       ? ThemeType.values.firstWhere((element) => element.toString() == type)
       : null;
+}
 
-  static MyTheme getTheme(ThemeType type) {
-    if (type == ThemeType.LIGHT) return LightTheme.instance;
-    if (type == ThemeType.DARK) return DarkTheme.instance;
-    if (type == ThemeType.BLUE) {
-      return BlueTheme.instance;
-    } else {
-      return LightTheme.instance;
-    } //Default Theme
-  }
+MyTheme getTheme(ThemeType type) {
+  if (type == ThemeType.LIGHT) return LightTheme.instance;
+  if (type == ThemeType.DARK) return DarkTheme.instance;
+  if (type == ThemeType.BLUE) {
+    return BlueTheme.instance;
+  } else {
+    return LightTheme.instance;
+  } //Default Theme
 }

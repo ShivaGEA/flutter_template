@@ -31,7 +31,7 @@ extension Level on LogLevel {
 /// 'Debug'.d(); // Print `[d] [2021-04-22T13:26:37.199067][Shqs] Debug` and return `Debug`
 /// 'Debug'.d(tag: 'TAG'); // Print `[d] [2021-04-22T13:26:37.199067][TAG] Debug` and return `Debug`
 /// ```
-const _defaultTag = 'Shqs';
+const _defaultTag = 'GEA';
 
 extension LoggerEx on String {
   String v({String tag = _defaultTag}) {

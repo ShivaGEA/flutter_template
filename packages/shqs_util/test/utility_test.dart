@@ -86,7 +86,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
 
     final insecure =
-        await ShqsSharedPreferencesProvider.createInSequrePreference();
+        await GeaSharedPreferencesProvider.createInSequrePreference();
 
     final isSetBool = await insecure.setBool('boolTest', true);
     GeLog.d('SharedPreferences test', 'boolTest save: $isSetBool');
@@ -133,7 +133,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
 
     final secure =
-        await ShqsSharedPreferencesProvider.createInSequrePreference();
+        await GeaSharedPreferencesProvider.createInSequrePreference();
     // final insecure = await InsecureSharedPreferences.instance;
 
     // bool test

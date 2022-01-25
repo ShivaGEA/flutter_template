@@ -1,5 +1,4 @@
 /*
-
 enum BuildType { dev, field, prod }
 
 extension TypeName on BuildType {

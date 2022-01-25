@@ -1,20 +1,20 @@
 import 'dart:async';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import '../shared_preferences.dart';
+
 import '../../../shqs_util.dart';
 
 part 'SecureSharedPreferences.dart';
 
 /// Extended SharedPreferences class without encrypt String values
-class InsecureSharedPreferences extends ShqsSharedPreferences {
+class InsecureSharedPreferences extends GeaSharedPreferences {
   final SharedPreferences _sharedPreference;
 
   InsecureSharedPreferences._(this._sharedPreference);
 
   static Completer<InsecureSharedPreferences>? _completer;
 
-  static Future<ShqsSharedPreferences> get instance async {
+  static Future<GeaSharedPreferences> get instance async {
     if (_completer == null) {
       final completer = Completer<InsecureSharedPreferences>();
       final sharedPreference = await SharedPreferences.getInstance();
@@ -90,5 +90,4 @@ class InsecureSharedPreferences extends ShqsSharedPreferences {
 
   @override
   Future<void> reload() => _sharedPreference.reload();
-
 }

@@ -6,7 +6,7 @@ class SecureSharedPreferences extends InsecureSharedPreferences {
 
   SecureSharedPreferences._(_sharedPreference) : super._(_sharedPreference);
 
-  static Future<ShqsSharedPreferences> get instance async {
+  static Future<GeaSharedPreferences> get instance async {
     if (_completer == null) {
       final completer = Completer<SecureSharedPreferences>();
       final sharedPreference = await SharedPreferences.getInstance();
@@ -20,7 +20,6 @@ class SecureSharedPreferences extends InsecureSharedPreferences {
 
   @override
   Future<bool> setString(String key, String value) async {
-
     return super.setString(key, SecurityUtils.encrypt(value));
   }
 

@@ -1,12 +1,10 @@
-import 'shared_preferences.dart';
 import 'impl/InsecureSharedPreferences.dart';
+import 'shared_preferences.dart';
 
-class ShqsSharedPreferencesProvider {
-
-  static Future<ShqsSharedPreferences> createInSequrePreference() async =>
+class GeaSharedPreferencesProvider {
+  static Future<GeaSharedPreferences> createInSequrePreference() async =>
       await InsecureSharedPreferences.instance;
 
-  static Future<ShqsSharedPreferences> createSequrePreference() async =>
+  static Future<GeaSharedPreferences> createSequrePreference() async =>
       await SecureSharedPreferences.instance;
-
 }

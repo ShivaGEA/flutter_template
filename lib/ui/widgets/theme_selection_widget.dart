@@ -67,7 +67,7 @@ class ThemeSelectionWidget extends StatelessWidget {
   }
 
   Widget _dialogItem(ThemeType themeType) {
-    final theme = MyTheme.getTheme(themeType);
+    final theme = getTheme(themeType);
     return InkWell(
       onTap: () {
         if (onThemeSelected != null) onThemeSelected!(theme, themeType);

@@ -7,7 +7,7 @@ class UUID {
   static String get randomUuid => const Uuid().v1();
 }
 
-extension ShqsString on String {
+extension GeaString on String {
   /// Make JsonString to formatted String
   String pretty() =>
       const JsonEncoder.withIndent('  ').convert(json.decode(this));
