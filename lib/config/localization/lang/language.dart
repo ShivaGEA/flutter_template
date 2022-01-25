@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class Language {
-  static Language? of(BuildContext context) {
-    return Localizations.of<Language>(context, Language);
-  }
+  static Language? of(BuildContext context) =>
+      Localizations.of<Language>(context, Language);
 
   String get appName => 'Template';
   String get name => 'Name';

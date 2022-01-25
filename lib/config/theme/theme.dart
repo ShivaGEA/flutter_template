@@ -6,7 +6,11 @@ import 'blue_theme.dart';
 import 'dark_theme.dart';
 import 'light_theme.dart';
 
-enum ThemeType { LIGHT, DARK, BLUE, RED, YELLOW, GREEN }
+enum ThemeType {
+  LIGHT,
+  DARK,
+  BLUE,
+}
 
 abstract class MyTheme {
   ThemeType get type;
@@ -22,10 +26,11 @@ abstract class MyTheme {
 
   static Future<MyTheme> set(ThemeType themeType) async {
     await _save(themeType);
-    if (themeType == ThemeType.LIGHT)
+    if (themeType == ThemeType.LIGHT) {
       GeLog.logLevel = LogLevel.error;
-    else
+    } else {
       GeLog.logLevel = LogLevel.verbose;
+    }
     _isInitialised = true;
     _theme = getTheme(themeType);
     return _theme;
@@ -56,9 +61,10 @@ abstract class MyTheme {
   static MyTheme getTheme(ThemeType type) {
     if (type == ThemeType.LIGHT) return LightTheme.instance;
     if (type == ThemeType.DARK) return DarkTheme.instance;
-    if (type == ThemeType.BLUE)
+    if (type == ThemeType.BLUE) {
       return BlueTheme.instance;
-    else
-      return LightTheme.instance; //Default Theme
+    } else {
+      return LightTheme.instance;
+    } //Default Theme
   }
 }

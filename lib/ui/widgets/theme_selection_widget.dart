@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:template/config/theme/theme.dart';
@@ -13,9 +12,7 @@ class ThemeSelectionWidget extends StatelessWidget {
   ThemeSelectionWidget(this.onThemeSelected);
 
   @override
-  Widget build(BuildContext context) => _themeToggle();
-
-  Widget _themeToggle() {
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         _showThemeDialog();
@@ -41,7 +38,7 @@ class ThemeSelectionWidget extends StatelessWidget {
               ),
             ),
             const Padding(padding: EdgeInsets.all(4.0)),
-            Text(lang.theme)
+            Text(lang(Get.context!).theme)
           ],
         )),
       ),

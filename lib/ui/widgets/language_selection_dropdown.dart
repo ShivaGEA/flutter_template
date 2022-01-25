@@ -1,26 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:template/config/localization/lang/language.dart';
 
 import '../../app.dart';
 
 class LanguageSelectionDropDown extends StatelessWidget {
-  late BuildContext context;
   @override
   Widget build(BuildContext context) {
-    this.context = context;
     return _createLanguageDropDown();
   }
 
   Widget _createLanguageDropDown() {
     return DropdownButton<String>(
       iconSize: 30,
-      hint: Text(lang.selectLanguage),
+      hint: Text(lang(Get.context!).selectLanguage),
       onChanged: (language) {
         debugPrint('Language===> $language');
         if (language != null) {
-          //Get.find<MyAppController>().setLocaleByLanguageCode(language);
-          MyApp.of(context)?.setLocaleByLanguage(language);
+          Provider.of<MyAppController>(Get.context!, listen: false)
+              .setLocaleByLanguageCode(language);
         }
       },
       items: languages.keys

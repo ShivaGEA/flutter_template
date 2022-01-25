@@ -19,13 +19,13 @@ class GitSearchController extends GetxController {
 
   void onEvent(GitPageEvent event) async {
     debugPrint('Event==> $event  ${state.value}');
-    if (event is GitPageLoadMoreEvent)
+    if (event is GitPageLoadMoreEvent) {
       await loadMoreEvent();
-    else if (event is GitPageLoadEvent)
+    } else if (event is GitPageLoadEvent) {
       await gitPageLoadEvent();
-    else if (event is GitPageReloadEvent)
+    } else if (event is GitPageReloadEvent) {
       await gitPageReloadEvent();
-    else {}
+    } else {}
   }
 
   Future<void> loadMoreEvent() async {

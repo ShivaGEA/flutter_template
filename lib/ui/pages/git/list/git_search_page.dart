@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:template/config/routes.dart';
 import 'package:template/domain/datasources/database/entities/git_repo.dart';
 import 'package:template/ui/widgets/bottom_loader.dart';
 import 'package:template/ui/widgets/language_selection_dropdown.dart';
@@ -32,7 +33,7 @@ class _GitSearchPageState extends State<GitSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: lText(lang.search),
+        title: lText(lang(context).search),
         actions: [
           ThemeSelectionWidget((theme, type) {
             Get.find<MyAppController>().setTheme(theme);
@@ -53,29 +54,35 @@ class _GitSearchPageState extends State<GitSearchPage> {
   }
 
   Widget _listing({required List<GitRepo> list, state = GitLoadedState}) {
-    if (list.isNotEmpty)
+    if (list.isNotEmpty) {
       return ListView.builder(
         itemCount: list.length + 1,
         itemBuilder: (context, i) =>
             i < list.length ? _listItem(list[i], i) : _loadMore(state),
       );
-    else
+    } else {
       return _loader();
+    }
   }
 
-  Widget _listItem(GitRepo repo, int index) => Container(
-      margin: const EdgeInsets.all(10.0),
-      padding: const EdgeInsets.all(10.0),
-      color: Colors.black12,
-      child: Text('${index + 1}: ' +
-          (repo.name ?? '') +
-          '(' +
-          (repo.fullName ?? '') +
-          ') ' +
-          '\nUrl: ' +
-          (repo.url ?? '') +
-          '\nDescription: ' +
-          (repo.description ?? '')));
+  Widget _listItem(GitRepo repo, int index) => InkWell(
+        onTap: () {
+          Get.toNamed(Routes.gitSearchGetX);
+        },
+        child: Container(
+            margin: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
+            color: Colors.black12,
+            child: Text('${index + 1}: ' +
+                (repo.name ?? '') +
+                '(' +
+                (repo.fullName ?? '') +
+                ') ' +
+                '\nUrl: ' +
+                (repo.url ?? '') +
+                '\nDescription: ' +
+                (repo.description ?? ''))),
+      );
 
   Widget _body() {
     return BlocProvider<GitSearchBloc>(
@@ -83,14 +90,17 @@ class _GitSearchPageState extends State<GitSearchPage> {
         child: BlocBuilder<GitSearchBloc, GitSearchState>(
             builder: (BuildContext context, GitSearchState state) {
           debugPrint('state==> $state');
-          if (state is GitLoadedState)
+          if (state is GitLoadedState) {
             return _listing(list: state.list ?? [], state: state);
-          else if (state is GitLoadingState)
+          } else if (state is GitLoadingState) {
             return _loader();
-          else if (state is GitInitialState)
-            return Container(child: const Center(child: Text('Init screen')));
-          else
-            return _listing(list: [], state: state);
+          } else {
+            if (state is GitInitialState) {
+              return Container(child: const Center(child: Text('Init screen')));
+            } else {
+              return _listing(list: [], state: state);
+            }
+          }
         }));
   }
 

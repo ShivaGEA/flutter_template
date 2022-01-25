@@ -30,10 +30,11 @@ abstract class Environment {
 
   static Future<Environment> set(BuildType buildType) async {
     await _save(buildType);
-    if (buildType == BuildType.PROD)
+    if (buildType == BuildType.PROD) {
       GeLog.logLevel = LogLevel.error;
-    else
+    } else {
       GeLog.logLevel = LogLevel.verbose;
+    }
     _isInitialised = true;
     _env = _getEnv(buildType);
     return _env;
@@ -66,10 +67,11 @@ abstract class Environment {
     if (buildType == BuildType.DEV) return DEV.instance;
     if (buildType == BuildType.QA) return QA.instance;
     if (buildType == BuildType.UAT) return UAT.instance;
-    if (buildType == BuildType.PROD)
+    if (buildType == BuildType.PROD) {
       return PROD.instance;
-    else
-      return DEV.instance; //Default environment
+    } else {
+      return DEV.instance;
+    } //Default environment
   }
 
   static const isDebugMode = kDebugMode;

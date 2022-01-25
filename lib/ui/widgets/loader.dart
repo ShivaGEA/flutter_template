@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../app.dart';
@@ -12,7 +11,7 @@ class Loader extends StatelessWidget {
         children: [
           const CircularProgressIndicator(),
           const SizedBox(height: 15),
-          Text(lang.loading),
+          Text(lang(context).loading),
         ],
       ),
     );

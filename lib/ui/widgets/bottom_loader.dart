@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../app.dart';
 
@@ -9,7 +9,9 @@ class BottomLoader extends StatelessWidget {
   BottomLoader(this.showLoader, this.onTap);
 
   @override
-  Widget build(BuildContext context) => _loadMore();
+  Widget build(BuildContext context) {
+    return _loadMore();
+  }
 
   Widget _loadMore() {
     return showLoader
@@ -26,7 +28,7 @@ class BottomLoader extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                   const SizedBox(width: 15),
-                  Text(lang.loading),
+                  Text(lang(Get.context!).loading),
                 ],
               ),
             ),
@@ -35,7 +37,7 @@ class BottomLoader extends StatelessWidget {
             onTap: onTap,
             child: Container(
                 padding: const EdgeInsets.all(20),
-                child: Center(child: Text(lang.loadMore))),
+                child: Center(child: Text(lang(Get.context!).loadMore))),
           );
   }
 }
