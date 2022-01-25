@@ -1,10 +1,10 @@
 import 'package:floor/floor.dart';
-import 'package:template/domain/datasources/database/entities/git_repo.dart';
-import 'package:template/domain/datasources/database/dao/git_repository_dao.dart';
+
+import '../../../../domain/datasources/database/dao/git_repository_dao.dart';
+import '../../../../domain/datasources/database/entities/git_repo.dart';
 
 @dao
 abstract class GitRepositoryDaoImpl implements GitRepositoryDao {
-
   @override
   @Query('SELECT * FROM Repository')
   Future<List<GitRepo>> findAllRepositories();

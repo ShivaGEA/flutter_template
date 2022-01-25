@@ -1,9 +1,6 @@
+import '../../../../domain/datasources/database/entities/git_repo.dart';
 
-
-import 'package:template/domain/datasources/database/entities/git_repo.dart';
-
-abstract class GitRepositoryDao{
-
+abstract class GitRepositoryDao {
   Future<List<GitRepo>> findAllRepositories();
 
   Stream<List<GitRepo>> findAllRepositoriesAsStream();

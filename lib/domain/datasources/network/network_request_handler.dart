@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:template/domain/enum/network_request.dart';
+
+import '../../../../domain/enum/network_request.dart';
 
 class NetworkHandler {
   final Dio _dio = Get.find<Dio>();

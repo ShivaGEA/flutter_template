@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:template/domain/datasources/network/exceptions/network_exceptions.dart';
-import 'package:template/domain/enum/network_request.dart';
 
+import '../../../../domain/datasources/network/exceptions/network_exceptions.dart';
+import '../../../../domain/enum/network_request.dart';
 import 'network_request_handler.dart';
 import 'response/api_response.dart';
 

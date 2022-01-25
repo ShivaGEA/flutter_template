@@ -1,1 +1,6 @@
-enum Status { SUCCESS, ERROR, LOADING, UNAUTHORIZED }
+enum Status {
+  SUCCESS,
+  ERROR,
+  LOADING,
+  UNAUTHORIZED,
+}

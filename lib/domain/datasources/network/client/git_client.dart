@@ -1,4 +1,4 @@
-import 'package:template/domain/datasources/database/entities/git_repo.dart';
+import '../../../../domain/datasources/database/entities/git_repo.dart';
 
 abstract class GitClient {
   Future<List<GitRepo>> repositories();

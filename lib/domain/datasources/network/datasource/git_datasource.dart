@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:template/domain/datasources/database/entities/git_repo.dart';
-import 'package:template/domain/datasources/network/response/git_search_response.dart';
 
+import '../../../../domain/datasources/database/entities/git_repo.dart';
+import '../../../../domain/datasources/network/response/git_search_response.dart';
 import '../base_datasource.dart';
 
 abstract class GitDataSource {
