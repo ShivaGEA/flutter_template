@@ -18,31 +18,45 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+  #Util libraries
   shqs_util:
     path: packages/shqs_util
   string_validator: ^0.3.0
+
+  #State Management, Route Management & Dependency Injection
   get: ^4.3.8
+
+  #Animation
   lottie: ^1.1.0
+
+  #Reactive Dart Libraries
   dart_date: ^1.1.0
   dartz: ^0.10.0
 
+  #Networking
   dio: ^4.0.0
   retrofit: ^2.0.1
-  cached_network_image:
-  shared_preferences: ^2.0.12
 
+  #Image Processing
+  cached_network_image:
+
+  #Local Storage
+  shared_preferences: ^2.0.12
   sqflite: ^2.0.0+3
-  floor: ^1.1.0 #local database
+  floor: ^1.1.0
   floor_annotation: ^1.0.0
 
+  #State Management
   provider: ^6.0.2
-  lint: ^1.6.0
-  equatable: ^2.0.3
   flutter_bloc: ^7.2.0
+  equatable: ^2.0.3
 
+  #Code Analysys
+  lint: ^1.6.0
+
+  #localization
   flutter_localizations:
     sdk: flutter
-
   intl: ^0.17.0
 
 dev_dependencies:

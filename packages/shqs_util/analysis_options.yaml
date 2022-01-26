@@ -1,9 +1,7 @@
 analyzer:
   exclude:
-    - lib/config/localization/gen/**
     - lib/**/*.g.dart
     - lib/generated/**
-    - packages/**
     - test/**
 
   errors:
