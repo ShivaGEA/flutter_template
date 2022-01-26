@@ -30,25 +30,25 @@ Flutter Basic Template Application
 
 **Libraries**
 - 	State management
-	- 	get
+	- 	[get](https://pub.dev/packages/get)
 - 	Route Management/Routing
-	- 	get
+	- 	[get](https://pub.dev/packages/get)
 - 	Localization & Internationalization
-	- 	flutter_localization
-	- 	intl
+	- 	[flutter_localization]
+	- 	[intl](https://pub.dev/packages/intl)
 - 	Dependency Injection
-	- 	get
+	- 	[get](https://pub.dev/packages/get)
 - 	Networking
-	- 	dio
-	- 	retrofit
+	- 	[dio](https://pub.dev/packages/dio)
+	- 	[retrofit](https://pub.dev/packages/retrofit)
 - 	Local Storage
-	- 	sqflite
-	- 	floor & floor_annotation
-	- 	shared_preferences
+	- 	[sqflite](https://pub.dev/packages/sqflite)
+	- 	[floor](https://pub.dev/packages/floor) & [floor_annotation](https://pub.dev/packages/floor_annotation)
+	- 	[shared_preferences](https://pub.dev/packages/shared_preferences)
 - 	Network Images Loading
-	- 	cached_image_network
+	- 	[cached_image_network](https://pub.dev/packages/cached_network_image)
 - 	Code Analysis
-	- 	lint
+	- 	[lint](https://pub.dev/packages/lint)
 
 
 
