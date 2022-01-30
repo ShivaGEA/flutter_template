@@ -54,9 +54,16 @@ abstract class MyTheme {
   }
 
   //String to ThemeType (enum) conversion
-  static ThemeType? _getThemeType(String type) => type != ''
-      ? ThemeType.values.firstWhere((element) => element.toString() == type)
-      : null;
+  static ThemeType? _getThemeType(String type) {
+    try {
+      return type != ''
+          ? ThemeType.values.firstWhere((element) => element.toString() == type)
+          : null;
+    } catch (e) {
+      debugPrint(e.toString());
+      return null;
+    }
+  }
 }
 
 MyTheme getTheme(ThemeType type) {
