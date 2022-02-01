@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:template/app.dart';
 
+import '../../app.dart';
 import 'gen/app_localizations.dart';
 
 AppLocalizations lang(BuildContext context) =>

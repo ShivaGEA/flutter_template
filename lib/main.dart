@@ -23,10 +23,13 @@ void main() async {
     GeLog.e('Error', ' ${e.toString()}');
   }
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
           create: (_) => Get.find<MyAppController>(),
-          builder: (context, child) => MyApp()),
-    ]),
+          builder: (context, child) => MyApp(),
+        ),
+      ],
+    ),
   );
 }
