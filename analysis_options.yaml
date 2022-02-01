@@ -1,8 +1,10 @@
 analyzer:
+
   exclude:
     - lib/config/localization/gen/**
     - lib/**/*.g.dart
     - lib/generated/**
+    - lib/domain/datasources/samples/**
     - packages/**
     - test/**
 
@@ -61,3 +63,7 @@ linter:
     - unnecessary_statements
     - unnecessary_this
     - valid_regexps
+    - directives_ordering
+    - package_api_docs
+    - prefer_relative_imports
+    - avoid_relative_lib_imports
