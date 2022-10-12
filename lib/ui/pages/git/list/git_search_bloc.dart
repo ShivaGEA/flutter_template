@@ -9,26 +9,30 @@ import 'git_search_state.dart';
 class GitSearchBloc extends Bloc<GitSearchEvent, GitSearchState> {
   final _gitRepository = Get.find<GitRepositoryImpl>();
 
-  GitSearchBloc() : super(GitInitialState());
+  GitSearchBloc() : super(GitInitialState()) {
+    on<GitLoadMoreEvent>((event, emit) => onNewEvent(event, emit));
+    on<GitLoadedEvent>((event, emit) => onNewEvent(event, emit));
+    on<GitReloadEvent>((event, emit) => onNewEvent(event, emit));
+  }
 
-  Stream<GitSearchState> mapEventToState(GitSearchEvent event) async* {
+  Future<void> onNewEvent(
+      GitSearchEvent event, Emitter<GitSearchState> emit) async {
     debugPrint('===> $event    $state');
 
     if (event is GitLoadMoreEvent) {
       final list = (state as GitLoadedState).list;
-      yield GitLoadMoreState(list: list);
-
+      emit(GitLoadMoreState(list: list));
       final resp = await _gitRepository.repositories();
-      yield resp.fold((l) => GitLoadedState(list: [...list ?? [], ...l]),
-          (r) => GitErrorState());
+      emit(resp.fold((l) => GitLoadedState(list: [...list ?? [], ...l]),
+          (r) => GitErrorState()));
     } else if (event is GitLoadedEvent) {
-      yield GitLoadingState();
+      emit(GitLoadingState());
       final resp = await _gitRepository.repositories();
-      yield resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState());
+      emit(resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState()));
     } else if (event is GitReloadEvent) {
-      yield GitLoadingState();
+      emit(GitLoadingState());
       final resp = await _gitRepository.repositories();
-      yield resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState());
+      emit(resp.fold((l) => GitLoadedState(list: l), (r) => GitErrorState()));
     }
   }
 }

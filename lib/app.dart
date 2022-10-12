@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        initialRoute: Routes.home,
+        initialRoute: Routes.gitSearch,
         getPages: Routes.pages,
       );
 }

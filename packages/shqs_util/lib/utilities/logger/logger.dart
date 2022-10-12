@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:file/file.dart';
@@ -251,8 +250,7 @@ class GeLogInterceptor extends LogInterceptor {
     final requestLog = StringBuffer('\n');
     requestLog.writeln('response status: ${response.statusCode}');
     requestLog.writeln('response statusMessage: ${response.statusMessage}');
-    requestLog.writeln('response data: '
-        '${response.data is Uint8List ? 'Uint8List' : response.data}');
+    //requestLog.writeln('response data: ''${response.data is Uint8List ? 'Uint8List' : response.data}');
     requestLog.writeln('response isRedirect: ${response.isRedirect}');
     GeLog.d('Response', requestLog.toString());
 
