@@ -1,0 +1,51 @@
+
+it contains UseCases that encapsulates a single and a very specific task to be performed. This layer extracts business logic from the presentation layer, such as from BLoC to make the presentation’s BLoC class simpler with a sole job to coordinate between views and use cases.
+
+ayer contains UI (views, widgets), and BLoC state management which exposes states that the UI would consume.
+
+The domain layer is the central layer of your app. It includes the code that describes your domain space along with the logic that manipulates it.
+
+entities: Objects that model your domain space.
+value objects: Another kind of object that models your domain space.
+interactors/use cases: Logic to handle entities and/or value objects and produce a result.
+repository interfaces: Define contracts for data source access.
+
+modelled business objects, attributes and their relationships.
+
+This layer provides abstract definitions for accessing data sources like a database or the internet. You’ll use Repository pattern in this layer.
+
+The main purpose of the repository pattern is to abstract away the concrete implementation of data access. To achieve this, you’ll add one interface and one class for each model:
+
+DataSource interface: The interface that the Framework layer must implement.
+Repository class: Provides methods for accessing the data that delegate to DataSource.
+
+The main focus of this layer is how to present the app to the end user.
+
+Modular programming is the process of subdividing a project into sub modules.
+
+The benefits of using modular programming include:
+Less code has to be written.
+A single procedure can be developed for reuse, eliminating the need to retype the code many times.
+Programs can be designed more easily because a small team deals with only a small part of the entire code.
+Modular programming allows many programmers to collaborate on the same application.
+The code is stored across multiple files.
+Code is short, simple and easy to understand.
+Errors can easily be identified, as they are localized to a subroutine or function.
+The same code can be used in many applications.
+The scoping of variables can easily be controlled.
+
+loose coupling, a method or class is almost independent, and they have less depended on each other.
+
+Loose coupling is an approach to interconnecting the components in a system or network so that those components, also called elements, depend on each other to the least extent practicable. Coupling refers to the degree of direct knowledge that one element has of another.
+
+
+
+
+
+
+
+
+
+
+
+

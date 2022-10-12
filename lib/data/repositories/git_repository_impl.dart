@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../domain/datasources/database/entities/git_repo.dart';
 import '../../domain/datasources/network/base_datasource.dart';
+import '../../domain/datasources/network/response/feature_response.dart';
 import '../../domain/repositories/base_repository.dart';
 import '../../domain/repositories/git_repository.dart';
 import '../datasources/database/dao/git_repository_dao_impl.dart';
@@ -14,8 +15,14 @@ class GitRepositoryImpl extends BaseRepository implements GitRepository {
   final _repositoryDao = Get.find<GitRepositoryDaoImpl>();
 
   @override
+  Future<Either<FeatureResponse, Message>> features(
+          String sku, String data, int retryCount) =>
+      _gitDataSource.features(sku, data, retryCount);
+
+  @override
   Future<Either<List<GitRepo>, Message>> repositories() async {
     final resp = await _gitDataSource.repositories();
+
     return resp.fold((l) {
       //store data into local database(floor)
       try {

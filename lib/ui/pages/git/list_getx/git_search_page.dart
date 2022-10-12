@@ -9,6 +9,7 @@ import '/ui/widgets/language_selection_dropdown.dart';
 import '/ui/widgets/loader.dart';
 import '/ui/widgets/theme_selection_widget.dart';
 import '../../../../app.dart';
+import '../../../../utilities/string_extension.dart';
 import 'git_search_controller.dart';
 import 'git_search_event.dart';
 import 'git_search_state.dart';
@@ -38,13 +39,15 @@ class GitPage extends GetView<GitSearchController> {
             ],
           ),
           body: _body(controller.state.value),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
             onPressed: () {
               controller.onEvent(GitPageReloadEvent());
             },
-            tooltip: 'Refresh',
-            child: const Icon(Icons.refresh),
+            tooltip: lang(Get.context!).refresh,
+            label: Text(lang(Get.context!).refresh),
+            icon: const Icon(Icons.refresh),
           ), // This trailing comma makes auto-formatting nicer for build
+
           // methods.
         ));
   }
@@ -53,6 +56,7 @@ class GitPage extends GetView<GitSearchController> {
     if (list.isNotEmpty) {
       return ListView.builder(
         itemCount: list.length + 1,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, i) =>
             i < list.length ? _listItem(list[i], i) : _loadMore(state),
       );
@@ -69,16 +73,15 @@ class GitPage extends GetView<GitSearchController> {
           margin: const EdgeInsets.all(10.0),
           padding: const EdgeInsets.all(10.0),
           color: Colors.black12,
-          child: Text(
-            '${index + 1}: ' +
-                (repo.name ?? '') +
-                '(' +
-                (repo.fullName ?? '') +
-                ') ' +
-                '\nUrl: ' +
-                (repo.url ?? '') +
-                '\nDescription: ' +
-                (repo.description ?? ''),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                repo.name?.toTitleCase() ?? '',
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              Text(repo.description ?? ''),
+            ],
           ),
         ),
       );

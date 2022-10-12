@@ -9,6 +9,8 @@ class GitRepo {
   String? fullName;
   String? name;
   String? owner;
+  String? ownerName;
+  String? ownerImage;
   String? description;
   String? url;
 
@@ -26,6 +28,8 @@ class GitRepo {
     name = json['name'];
     fullName = json['full_name'];
     owner = jsonEncode(json['owner']);
+    ownerName = json['owner']['login'];
+    ownerImage = json['owner']['avatar_url'];
     description = json['description'];
     url = json['url'];
   }

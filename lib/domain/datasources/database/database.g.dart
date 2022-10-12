@@ -6,6 +6,7 @@ part of 'database.dart';
 // FloorGenerator
 // **************************************************************************
 
+// ignore: avoid_classes_with_only_static_members
 class $FloorAppDataBase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
@@ -62,8 +63,11 @@ class _$AppDataBase extends AppDataBase {
 
   GitRepositoryDaoImpl? _repositoryDaoInstance;
 
-  Future<sqflite.Database> open(String path, List<Migration> migrations,
-      [Callback? callback]) async {
+  Future<sqflite.Database> open(
+    String path,
+    List<Migration> migrations, [
+    Callback? callback,
+  ]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
       version: 1,
       onConfigure: (database) async {
@@ -81,7 +85,7 @@ class _$AppDataBase extends AppDataBase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `GitRepo` (`id` INTEGER NOT NULL, `fullName` TEXT, `name` TEXT, `owner` TEXT, `description` TEXT, `url` TEXT, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `GitRepo` (`id` INTEGER NOT NULL, `fullName` TEXT, `name` TEXT, `owner` TEXT, `ownerName` TEXT, `ownerImage` TEXT, `description` TEXT, `url` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -97,8 +101,10 @@ class _$AppDataBase extends AppDataBase {
 }
 
 class _$GitRepositoryDaoImpl extends GitRepositoryDaoImpl {
-  _$GitRepositoryDaoImpl(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
+  _$GitRepositoryDaoImpl(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database, changeListener),
         _gitRepoInsertionAdapter = InsertionAdapter(
             database,
             'GitRepo',
@@ -107,6 +113,8 @@ class _$GitRepositoryDaoImpl extends GitRepositoryDaoImpl {
                   'fullName': item.fullName,
                   'name': item.name,
                   'owner': item.owner,
+                  'ownerName': item.ownerName,
+                  'ownerImage': item.ownerImage,
                   'description': item.description,
                   'url': item.url
                 },
@@ -120,6 +128,8 @@ class _$GitRepositoryDaoImpl extends GitRepositoryDaoImpl {
                   'fullName': item.fullName,
                   'name': item.name,
                   'owner': item.owner,
+                  'ownerName': item.ownerName,
+                  'ownerImage': item.ownerImage,
                   'description': item.description,
                   'url': item.url
                 },
@@ -133,6 +143,8 @@ class _$GitRepositoryDaoImpl extends GitRepositoryDaoImpl {
                   'fullName': item.fullName,
                   'name': item.name,
                   'owner': item.owner,
+                  'ownerName': item.ownerName,
+                  'ownerImage': item.ownerImage,
                   'description': item.description,
                   'url': item.url
                 },
@@ -183,12 +195,8 @@ class _$GitRepositoryDaoImpl extends GitRepositoryDaoImpl {
 
   @override
   Future<void> insertRepositories(List<GitRepo> repositories) async {
-    try {
-      await _gitRepoInsertionAdapter.insertList(
-          repositories, OnConflictStrategy.abort);
-    } catch (e) {
-      if (e is sqflite.DatabaseException) updateRepositories(repositories);
-    }
+    await _gitRepoInsertionAdapter.insertList(
+        repositories, OnConflictStrategy.abort);
   }
 
   @override

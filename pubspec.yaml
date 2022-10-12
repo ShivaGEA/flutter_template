@@ -8,7 +8,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
   flutter:
@@ -29,28 +29,28 @@ dependencies:
   lottie: ^1.1.0
 
   #Reactive Dart Libraries
-  dart_date: ^1.1.0
-  dartz: ^0.10.0
+  dart_date: ^1.1.1
+  dartz: ^0.10.1
 
   #Networking
-  dio: ^4.0.0
-  retrofit: ^2.0.1
+  dio: ^4.0.6
+  retrofit: ^3.3.1
 
   #Image Processing
-  cached_network_image:
+  #cached_network_image:
 
   #Local Storage
-  shared_preferences: ^2.0.12
-  sqflite: ^2.0.0+3
-  floor: ^1.1.0
-  floor_annotation: ^1.0.0
+  #shared_preferences: ^2.0.13
+  sqflite: ^2.1.0+1
+  floor: ^1.3.0
+  floor_annotation: ^1.3.0
 
   #State Management
   provider: ^6.0.2
-  flutter_bloc: ^7.2.0
+  flutter_bloc: ^8.1.1
   equatable: ^2.0.3
 
-  #Code Analysys
+  #Code Analysis
   lint: ^1.6.0
 
   #localization
@@ -58,16 +58,14 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
 
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  freezed: ^0.14.2
-  freezed_annotation: ^0.14.2
-  floor_generator: ^1.1.0
+  freezed: any
+  freezed_annotation: any
+  floor_generator: any
   json_serializable:
-  analyzer: ^1.1.0
+  analyzer: any
   retrofit_generator: any
   build_runner: any
 

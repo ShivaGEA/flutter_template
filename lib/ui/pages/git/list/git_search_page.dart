@@ -10,6 +10,8 @@ import '/ui/widgets/language_selection_dropdown.dart';
 import '/ui/widgets/loader.dart';
 import '/ui/widgets/theme_selection_widget.dart';
 import '../../../../app.dart';
+import '../../../../utilities/string_extension.dart';
+import '../../../widgets/circle_image.dart';
 import 'git_search_bloc.dart';
 import 'git_search_event.dart';
 import 'git_search_state.dart';
@@ -30,37 +32,41 @@ class _GitSearchPageState extends State<GitSearchPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          lang(context).search,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            lang(context).search,
+          ),
+          actions: [
+            ThemeSelectionWidget((theme, type) {
+              Get.find<MyAppController>().setTheme(theme);
+              Get.back();
+            }),
+            LanguageSelectionDropDown(),
+          ],
         ),
-        actions: [
-          ThemeSelectionWidget((theme, type) {
-            Get.find<MyAppController>().setTheme(theme);
-            Get.back();
-          }),
-          LanguageSelectionDropDown(),
-        ],
-      ),
-      body: _body(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _bloc!..add(GitReloadEvent());
-        },
-        tooltip: 'Refresh',
-        child: const Icon(Icons.refresh),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+        body: _body(),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            _bloc!..add(GitReloadEvent());
+          },
+          tooltip: lang(context).refresh,
+          label: Text(lang(context).refresh),
+          icon: const Icon(Icons.refresh),
+        ), // This trailing comma makes auto-formatting nicer for build methods.
+      );
 
   Widget _listing({required List<GitRepo> list, state = GitLoadedState}) {
     if (list.isNotEmpty) {
       return ListView.builder(
         itemCount: list.length + 1,
-        itemBuilder: (context, i) =>
-            i < list.length ? _listItem(list[i], i) : _loadMore(state),
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (context, i) => i < list.length
+            ? _listItem(list[i], i)
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 80.0),
+                child: _loadMore(state),
+              ),
       );
     } else {
       return _loader();
@@ -72,18 +78,23 @@ class _GitSearchPageState extends State<GitSearchPage> {
           Get.toNamed(Routes.gitSearchGetX);
         },
         child: Container(
-            margin: const EdgeInsets.all(10.0),
-            padding: const EdgeInsets.all(10.0),
-            color: Colors.black12,
-            child: Text('${index + 1}: ' +
-                (repo.name ?? '') +
-                '(' +
-                (repo.fullName ?? '') +
-                ') ' +
-                '\nUrl: ' +
-                (repo.url ?? '') +
-                '\nDescription: ' +
-                (repo.description ?? ''))),
+          margin: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
+          color: Colors.black12,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                repo.name?.toTitleCase() ?? '',
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              Text(repo.description ?? ''),
+              _richtext(repo),
+              const Padding(padding: EdgeInsets.all(2.0)),
+              _userInfo(repo.ownerName, repo.ownerImage ?? '')
+            ],
+          ),
+        ),
       );
 
   Widget _body() {
@@ -91,7 +102,7 @@ class _GitSearchPageState extends State<GitSearchPage> {
         create: (context) => _bloc!,
         child: BlocBuilder<GitSearchBloc, GitSearchState>(
             builder: (BuildContext context, GitSearchState state) {
-          debugPrint('state==> $state');
+          //debugPrint('state==> $state');
           if (state is GitLoadedState) {
             return _listing(list: state.list ?? [], state: state);
           } else if (state is GitLoadingState) {
@@ -112,4 +123,29 @@ class _GitSearchPageState extends State<GitSearchPage> {
       BottomLoader(state is GitLoadMoreState, () {
         _bloc!..add(GitLoadMoreEvent());
       });
+
+  Widget _userInfo(String? ownerName, String ownerImage) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        CircleImage(url: ownerImage, size: 10),
+        const Padding(padding: EdgeInsets.all(2.0)),
+        Text(ownerName?.toTitleCase() ?? '')
+      ],
+    );
+  }
+
+  Widget _richtext(GitRepo repo) => RichText(
+          text: TextSpan(
+        children: <TextSpan>[
+          const TextSpan(
+              text: 'Repo Url: ',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          TextSpan(
+              text: '${repo.url ?? ''}',
+              style: const TextStyle(color: Colors.black)),
+        ],
+      ));
 }

@@ -17,5 +17,7 @@
   "loadMore":"Load More",
   "search":"Search",
   "loading":"Loading...",
-  "theme":"Theme"
+  "theme":"Theme",
+  "refresh":"Refresh"
 }
+

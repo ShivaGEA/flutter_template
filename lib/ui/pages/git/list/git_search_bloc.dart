@@ -11,12 +11,13 @@ class GitSearchBloc extends Bloc<GitSearchEvent, GitSearchState> {
 
   GitSearchBloc() : super(GitInitialState());
 
-  @override
   Stream<GitSearchState> mapEventToState(GitSearchEvent event) async* {
     debugPrint('===> $event    $state');
+
     if (event is GitLoadMoreEvent) {
       final list = (state as GitLoadedState).list;
       yield GitLoadMoreState(list: list);
+
       final resp = await _gitRepository.repositories();
       yield resp.fold((l) => GitLoadedState(list: [...list ?? [], ...l]),
           (r) => GitErrorState());

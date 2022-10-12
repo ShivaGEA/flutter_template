@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => _appBody(context);
 
   Widget _appBody(BuildContext context) => GetMaterialApp(
+        debugShowCheckedModeBanner: true,
         title: 'Template',
         theme: Provider.of<MyAppController>(context).theme.theme,
         locale: Provider.of<MyAppController>(context).locale,
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        initialRoute: Routes.gitSearch,
+        initialRoute: Routes.home,
         getPages: Routes.pages,
       );
 }

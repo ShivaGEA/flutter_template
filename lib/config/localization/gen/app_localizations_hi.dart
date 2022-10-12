@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for Hindi (`hi`).
@@ -38,4 +35,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get theme => 'थीम';
+
+  @override
+  String get refresh => 'पुनः लोड करें';
 }

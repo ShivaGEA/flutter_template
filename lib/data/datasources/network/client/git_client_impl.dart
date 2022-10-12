@@ -4,6 +4,7 @@ import 'package:retrofit/http.dart';
 import '/config/env/env.dart';
 import '../../../../domain/datasources/database/entities/git_repo.dart';
 import '../../../../domain/datasources/network/client/git_client.dart';
+import '../../../../domain/datasources/network/response/feature_response.dart';
 
 part 'git_client_impl.g.dart';
 
@@ -18,4 +19,12 @@ abstract class GitClientImpl extends GitClient {
   @override
   @GET(Environment.gitSearch)
   Future<GitRepo> search();
+
+  @override
+  @GET(Environment.smartHqFeatures)
+  Future<FeatureResponse> features(
+    @Query('sku') String sku,
+    @Query('data') String data,
+    @Query('retry_count') int retryCount,
+  );
 }

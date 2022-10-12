@@ -1,6 +1,3 @@
-
-
-
 import 'app_localizations.dart';
 
 /// The translations for Telugu (`te`).
@@ -38,4 +35,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get theme => 'థీమ్';
+
+  @override
+  String get refresh => 'మళ్లీ లోడ్ చేయండి';
 }

@@ -1,0 +1,6 @@
+projectKey=FlutterTemplate
+serverUrl=http://localhost:9000
+serverVersion=9.2.4.50792
+dashboardUrl=http://localhost:9000/dashboard?id=FlutterTemplate
+ceTaskId=AYPLMRm_tUC94ILP7MLw
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYPLMRm_tUC94ILP7MLw

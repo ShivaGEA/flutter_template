@@ -22,6 +22,9 @@ abstract class Environment {
   static const gitRepositories = '/repositories';
   static const gitSearch = '/search';
 
+  static const smartHqFeatures =
+      'https://al8towkh6j.execute-api.us-east-1.amazonaws.com/dev/apinewfi';
+
   static late Environment _env;
   static bool _isInitialised = false;
 
@@ -57,10 +60,12 @@ abstract class Environment {
 
   //get pre saved environment from Local database
   static Future<BuildType> _getPreSavedEnv() async =>
-      _getBuildType((await Cache.instance).environment ?? '') ?? BuildType.DEV;
+      //_getBuildType((await Cache.instance).environment ?? '') ??
+      BuildType.DEV;
 
   static BuildType? _getBuildType(String type) => type != ''
-      ? BuildType.values.firstWhere((element) => element.toString() == type)
+      ? BuildType.values
+          .firstWhere((element) => element.toString().contains(type))
       : null;
 
   static Environment _getEnv(BuildType buildType) {

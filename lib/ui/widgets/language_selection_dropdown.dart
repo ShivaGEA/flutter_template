@@ -13,9 +13,11 @@ class LanguageSelectionDropDown extends StatelessWidget {
   Widget _createLanguageDropDown() {
     return DropdownButton<String>(
       iconSize: 30,
-      hint: Text(lang(Get.context!).selectLanguage),
+      hint: Text(
+        lang(Get.context!).selectLanguage,
+      ),
       onChanged: (language) {
-        debugPrint('Language===> $language');
+        //debugPrint('Language===> $language');
         if (language != null) {
           MyApp.setLocaleByLanguageCode(Get.context!, language);
         }

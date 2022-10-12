@@ -48,30 +48,25 @@ abstract class MyTheme {
 
   //get pre saved theme from Local database
   static Future<ThemeType> _getPreSavedTheme() async {
-    final theme = (await Cache.instance).theme;
+    /*final theme = (await Cache.instance).theme;
     debugPrint('From cache: theme=> $theme');
-    return _getThemeType(theme ?? '') ?? ThemeType.LIGHT;
+    return _getThemeType(theme ?? '') ?? ThemeType.LIGHT;*/
+    return ThemeType.LIGHT;
   }
 
-  //String to ThemeType (enum) conversion
-  static ThemeType? _getThemeType(String type) {
-    try {
-      return type != ''
-          ? ThemeType.values.firstWhere((element) => element.toString() == type)
-          : null;
-    } catch (e) {
-      debugPrint(e.toString());
-      return null;
-    }
-  }
+  /*//String to ThemeType (enum) conversion
+  static ThemeType? _getThemeType(String type) => type != ''
+      ? ThemeType.values
+          .firstWhere((element) => element.toString().contains(type))
+      : null;*/
 }
 
 MyTheme getTheme(ThemeType type) {
   if (type == ThemeType.LIGHT) return LightTheme.instance;
   if (type == ThemeType.DARK) return DarkTheme.instance;
-  if (type == ThemeType.BLUE) {
+  if (type == ThemeType.BLUE)
     return BlueTheme.instance;
-  } else {
+  else {
     return LightTheme.instance;
   } //Default Theme
 }
